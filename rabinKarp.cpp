@@ -1,8 +1,4 @@
-#include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <cstdlib>
-using namespace std;
+#include "Algorithms.h"
 #define d 256
 
 void rabinKarp(string pattern, string source, int q){
