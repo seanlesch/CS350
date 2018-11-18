@@ -5,3 +5,4 @@
 using namespace std;
 
 void rabinKarp(string, string, int);
+void kmp(char *, char *);
