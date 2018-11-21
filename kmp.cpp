@@ -62,17 +62,9 @@ void kmp(string pattern, string text){
             ++text_i; 
         } 
         
-        //if the pattern is found in the text the index of the text
-        //is stored in the matches array and the pattern index
-        //gets the corresponding "to_skip" value. This allows for 
-        //the pattern being present starting in a previously found
-        //match. "aa" in "aaa" will yield indices 0 and 1 instead of
-        //only 0
-        if (pat_i == pattern_length) { 
-            matches[match_i] = text_i - pat_i;
-            ++match_i;
-            pat_i = to_skip[pat_i - 1]; 
-        } 
+        //if the pattern has a match 
+        if (pat_i == pattern_length) return text_i - pat_i;
+            
         //pattern and text at their corresponding indices don't match
         else if ((text_i < text_length) && (pattern[pat_i] != text[text_i])) { 
             //if the pattern index is greater than 0 it gets set to the previous
@@ -82,13 +74,6 @@ void kmp(string pattern, string text){
         } 
     }
     
-    //outputs to screen the matches from the match array.
-    match_i = 0;
-    while(matches[match_i] != -1) {
-        cout << matches[match_i] << " ";
-        ++match_i;
-    }    
-
     delete to_skip;
 
     return;
