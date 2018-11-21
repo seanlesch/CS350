@@ -19,7 +19,7 @@ void brute(string pattern, string text) {
         ++text_i;
         pat_i = 0;
     }
-    if (text_i + pat_i > text_len) cout << "We have failed you, sorry master!" << endl;
+    cout << "We have failed you, sorry master!" << endl;
     return;
     
 }

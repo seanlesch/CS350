@@ -2,7 +2,7 @@
 
 int main(){
     cout << "Brute" << endl;
-    brute("go", "Algorithms and complexity.");
+    brute("the", "Algorithms and complexity.");
 
     cout << "KMP" << endl;
     kmp("go", "Algorithms and complexity.");
