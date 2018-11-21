@@ -58,7 +58,7 @@ void kmp(string pattern, string text){
         } 
         
         //if the pattern has a match 
-        if (pat_i == pattern_length) return text_i - pat_i;
+        if (pat_i == pattern_length) break;
             
         //pattern and text at their corresponding indices don't match
         else if ((text_i < text_length) && (pattern[pat_i] != text[text_i])) { 

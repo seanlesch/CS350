@@ -6,3 +6,4 @@ using namespace std;
 
 void rabinKarp(string, string, int);
 void kmp(string, string);
+void brute(string, string);
