@@ -42,13 +42,8 @@ void kmp(string pattern, string text){
     int pattern_length = pattern.length();    
     int pat_i = 0;
     int text_i = 0;
-    int match_i = 0;
-    //contains the indices of are the start of a match to the pattern
-    int matches[text_length - pattern_length]; 
     int start_i = 0;
-    for (match_i; match_i < text_length - pattern_length; ++match_i) matches[match_i] = -1;
-    match_i = 0;
-
+    
     //creates the prefix/suffix match array determining how many 
     //pattern indices to skip back on mismatch
     kmp_prefix(pattern, to_skip, pattern_length);
