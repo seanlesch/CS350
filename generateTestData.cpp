@@ -36,6 +36,7 @@ void generateStrings(){
     fout << generateRandomBinary(1000000) << endl;
     fout << generateRandomBinary(1000000000) << endl;
 
+    cout << "Done!\n";
     fout.close();
 
 }

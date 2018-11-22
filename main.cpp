@@ -9,5 +9,6 @@ int main(){
 
     cout << "Rabin karp" << endl;
     rabinKarp("go", "Algorithms and complexity.", 101);
+    generateStrings();
     return 0;
 }
