@@ -6,7 +6,7 @@ string generateRandomChars(const int len){
         "0123456789"
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz";
-    string s;
+    string s = string(len, '0');
 
     for (int i = 0; i < len; ++i) {
         s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
@@ -36,6 +36,15 @@ void generateStrings(){
     fout << generateRandomBinary(1000000) << endl;
     fout << generateRandomBinary(1000000000) << endl;
 
+    cout << "Done!\n";
+
+    fout.open("random_data.txt");
+    cout << "Writing data to file random_data.txt...\n";
+
+    fout << generateRandomChars(10) << endl;
+    fout << generateRandomChars(1000) << endl;
+    fout << generateRandomChars(1000000) << endl;
+    fout << generateRandomChars(1000000000) << endl;
     cout << "Done!\n";
     fout.close();
 
