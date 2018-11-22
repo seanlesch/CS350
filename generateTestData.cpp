@@ -11,9 +11,7 @@ string generateRandomChars(const int len){
     for (int i = 0; i < len; ++i) {
         s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
     }
-
     return s;
-
 }
 
 string generateRandomBinary(const int len){
@@ -47,6 +45,5 @@ void generateStrings(){
     fout << generateRandomChars(1000000000) << endl;
     cout << "Done!\n";
     fout.close();
-
 }
 
