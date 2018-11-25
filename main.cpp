@@ -1,19 +1,30 @@
 #include "Algorithms.h"
 
 int main(){
+    int len = 500;
+    
+    string text(generateRandomBinary(len));
+    string pattern(text, 495, 5);
+    cout << text << endl << pattern << endl;
+    struct timeval start, stop;
+    cout << endl << endl << endl;
+    gettimeofday(&start, NULL);
     cout << "Brute" << endl;
-    brute("the", "Algorithms and complexity.");
+    brute(pattern, text);
+    gettimeofday(&stop, NULL);
+    cout << "Brtue took:" << stop.tv_usec - start.tv_usec << endl;
 
+    gettimeofday(&start, NULL);
     cout << "KMP" << endl;
-    kmp("go", "Algorithms and complexity.");
-
+    kmp(pattern, text);
+    gettimeofday(&stop, NULL);
+    cout << "KMP took:" << stop.tv_usec - start.tv_usec << endl;
+    
+    gettimeofday(&start, NULL);
     cout << "Rabin karp" << endl;
-    rabinKarp("go", "Algorithms and complexity.", 101);
-    generateStrings();
-
-    std::cout << "BoyerMoore" << std::endl;
-    TestBoyerMoore testBoyerMoore;
-
+    rabinKarp(pattern, text, 101);
+    gettimeofday(&stop, NULL);
+    cout << "Rabin-Karp took:" << stop.tv_usec - start.tv_usec << endl;
 
     return 0;
 }
