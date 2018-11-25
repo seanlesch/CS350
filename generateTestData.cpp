@@ -26,25 +26,26 @@ string generateRandomBinary(const int len){
 
 void generateStrings(){
     ofstream fout;
-    fout.open("binary_data.txt");
-    cout << "Writing data to file binary_data.txt...\n";
-
-    fout << generateRandomBinary(10) << endl;
-    fout << generateRandomBinary(1000) << endl;
-    fout << generateRandomBinary(1000000) << endl;
-    fout << generateRandomBinary(1000000000) << endl;
-
-    cout << "Done!\n";
-
-    fout.open("random_data.txt");
-    cout << "Writing data to file random_data.txt...\n";
-
-    fout << generateRandomChars(10) << endl;
-    fout << generateRandomChars(1000) << endl;
-    fout << generateRandomChars(1000000) << endl;
-    fout << generateRandomChars(1000000000) << endl;
-    cout << "Done!\n";
+    fout.open("binary_data_small.txt");
+    fout << generateRandomBinary(1000);
     fout.close();
+    fout.open("binary_data_medium.txt");
+    fout << generateRandomBinary(1000000);
+    fout.close();
+    fout.open("binary_data_large.txt");
+    fout << generateRandomBinary(1000000000);
+    fout.close();
+
+    fout.open("random_data_small.txt");
+    fout << generateRandomChars(1000);
+    fout.close();
+    fout.open("random_data_medium.txt");
+    fout << generateRandomChars(1000000);
+    fout.close();
+    fout.open("random_data_large.txt");
+    fout << generateRandomChars(1000000000);
+    fout.close();
+    cout << "Done!\n";
 
     // Todo: Create a large file of all the same character.
 }
