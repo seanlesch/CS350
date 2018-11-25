@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdint>
 
 using namespace std;
 
@@ -16,8 +17,8 @@ class BoyerMoore
 public:
   BoyerMoore(string pattern);
   int Search(string source);
-  int32_t FindFirst(string * pSource);
-  vector<int32_t> FindAll(string * pSource);
+  long FindFirst(string * pSource);
+  vector<long> FindAll(string * pSource);
   int GetBadMatch(char letter);
   int GetGoodSuffix(char offset);
 };

@@ -1,4 +1,8 @@
 #include "Algorithms.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstdint>
 
 BoyerMoore::BoyerMoore(string pattern)
 {
@@ -65,7 +69,9 @@ void BoyerMoore::generateGoodSuffixTable(string pattern)
     while ((j <= patternLen) && (pattern[i - 1] != pattern[j - 1]))
     {
       if (goodSuffixTable[j] == 0)
+      {
         goodSuffixTable[j] = j - i;
+      }
       j = borderPositionTable[j];
     }
     i--;
@@ -84,16 +90,16 @@ int BoyerMoore::GetGoodSuffix(char offset)
   return goodSuffixTable[offset - 1];
 }
 
-int32_t FindFirst(string *pSource)
+long FindFirst(string *pSource)
 {
-  int32_t result = -1;
+  long result = -1;
 
   return result;
 }
 
-vector<int32_t> FindAll(string *pSource)
+vector<long> FindAll(string *pSource)
 {
-  vector<int32_t> result;
+  vector<long> result;
 
   return result;
 
