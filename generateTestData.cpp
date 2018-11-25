@@ -1,6 +1,14 @@
 #include "Algorithms.h"
 #include <fstream>
 
+string generateRandomDNA(const int len){
+    static const char alphanum[] ="ACTG"
+    string s = string(len, '0');
+
+    for (int i = 0; i < len; ++i) {
+        s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
+    }
+
 string generateRandomChars(const int len){
     static const char alphanum[] =
         "0123456789"
@@ -26,6 +34,16 @@ string generateRandomBinary(const int len){
 
 void generateStrings(){
     ofstream fout;
+    fout.open("DNA.txt");
+    cout << "Writing data to file DNA.txt...\n";
+
+    fout << generateRandomDNA(10) << endl;
+    fout << generateRandomDNA(1000) << endl;
+    fout << generateRandomDNA(1000000) << endl;
+    fout << generateRandomDNA(1000000000) << endl;
+
+    cout << "Done!\n";
+
     fout.open("binary_data.txt");
     cout << "Writing data to file binary_data.txt...\n";
 
