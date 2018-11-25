@@ -1,6 +1,6 @@
 #include "Algorithms.h"
 #include <fstream>
-
+//
 string generateRandomDNA(const int len){
     static const char alphanum[] ="ACTG"
     string s = string(len, '0');
