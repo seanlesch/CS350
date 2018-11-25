@@ -1,0 +1,41 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build & debug file",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-g",
+        "main.cpp",
+        "kmp.cpp",
+        "rabinKarp.cpp",
+        "brute.cpp",
+        "generateTestData.cpp",
+        "-o a.exe"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "build & run file",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-g",
+        "main.cpp",
+        "kmp.cpp",
+        "rabinKarp.cpp",
+        "brute.cpp",
+        "generateTestData.cpp",
+        "-o a.exe"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

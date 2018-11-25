@@ -45,5 +45,7 @@ void generateStrings(){
     fout << generateRandomChars(1000000000) << endl;
     cout << "Done!\n";
     fout.close();
+
+    // Todo: Create a large file of all the same character.
 }
 

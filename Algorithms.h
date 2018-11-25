@@ -2,6 +2,9 @@
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
+#include "BoyerMoore.h"
+#include "TestBoyerMoore.h"
+
 using namespace std;
 
 void rabinKarp(string, string, int);
