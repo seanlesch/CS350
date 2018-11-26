@@ -16,7 +16,8 @@ void brute(string * pattern, string * text) {
             ++text_i;
         }
         //resets the text index to where the comparisons started + 1
-        text_i -= pat_i - 1;
+        text_i -= pat_i;
+        ++text_i;
         pat_i = 0;
     }
     //cout << endl;
