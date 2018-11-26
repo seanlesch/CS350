@@ -7,7 +7,7 @@ TestBoyerMoore::TestBoyerMoore()
   string text = "GAGATAGATCTCGTAGAGCTTGAGATAGATCTCCTAGAGCTT";
   cout << "Pattern: " << pattern << endl;
   cout << "Text: " << text << endl;
-  BoyerMoore *bm = new BoyerMoore(pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
   
   ConfirmBadMatch(bm, 'A', 1);
   ConfirmBadMatch(bm, 'B', 8);
@@ -25,7 +25,7 @@ TestBoyerMoore::TestBoyerMoore()
   ConfirmGoodSuffix(bm, 7, 6);
   ConfirmGoodSuffix(bm, 8, 6);
 
-  result = bm->Search(text);
+  result = bm->Search(&text);
   delete bm;
 
   pattern = "babac";
@@ -33,7 +33,7 @@ TestBoyerMoore::TestBoyerMoore()
   cout << "Pattern: " << pattern << endl;
   cout << "Text: " << text << endl;
 
-  bm = new BoyerMoore(pattern);
+  bm = new BoyerMoore(&pattern);
 
   ConfirmBadMatch(bm, 'a', 1);
   ConfirmBadMatch(bm, 'b', 2);
@@ -46,14 +46,14 @@ TestBoyerMoore::TestBoyerMoore()
   ConfirmGoodSuffix(bm, 4, 5);
   ConfirmGoodSuffix(bm, 5, 5);
 
-  result = bm->Search(text);
+  result = bm->Search(&text);
   delete bm;
 
   pattern = "BARBER";
   text = "JIM_SAW_ME_IN_A_BARBERSHOP";
   cout << "Pattern: " << pattern << endl;
   cout << "Text: " << text << endl;
-  bm = new BoyerMoore(pattern);
+  bm = new BoyerMoore(&pattern);
 
   ConfirmBadMatch(bm, 'A', 4);
   ConfirmBadMatch(bm, 'B', 2);
@@ -71,14 +71,14 @@ TestBoyerMoore::TestBoyerMoore()
   ConfirmGoodSuffix(bm, 5, 6);
   ConfirmGoodSuffix(bm, 6, 6);
 
-  result = bm->Search(text);
+  result = bm->Search(&text);
   delete bm;
 
   pattern = "TCCTAGAGCTT";
   text = "GAGATAGATCTCGTAGAGCTTGAGATAGATCTCCTAGAGCTT";
   cout << "Pattern: " << pattern << endl;
   cout << "Text: " << text << endl;
-  bm = new BoyerMoore(pattern);
+  bm = new BoyerMoore(&pattern);
 
   ConfirmBadMatch(bm, 'A', 4);
   ConfirmBadMatch(bm, 'B', 11);
@@ -101,7 +101,7 @@ TestBoyerMoore::TestBoyerMoore()
   ConfirmGoodSuffix(bm, 10, 11);
   ConfirmGoodSuffix(bm, 11, 11);
 
-  result = bm->Search(text);
+  result = bm->Search(&text);
   delete bm;
 }
 
