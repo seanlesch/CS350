@@ -3,6 +3,7 @@
 
 int main()
 {
+<<<<<<< HEAD
      int len = 10000;
     
     string text(generateRandomBinary(len));
@@ -30,5 +31,7 @@ int main()
 
     TestRunner tr();
 
+=======
+>>>>>>> 706b26670d26991f901d8c80861b602bd06e0168
      return 0;
 }
