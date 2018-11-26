@@ -60,7 +60,6 @@ void kmp(string * pattern, string * text){
         //if the pattern has a match 
         if (pat_i == pattern_length) {
             text_i = text_i - pat_i +1;
-            cout << text_i - 1 << ",";
             pat_i = 0;
         //pattern and text at their corresponding indices don't match
         } else if ((text_i < text_length) && (pattern->at(pat_i) != text->at(text_i))) { 
@@ -72,6 +71,5 @@ void kmp(string * pattern, string * text){
     }
     
     delete to_skip;
-    cout << endl;
     return;
 }
