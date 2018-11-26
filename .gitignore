@@ -12,5 +12,9 @@
 .vscode/tasks.json
 .vscode/launch.json
 a.exe
-binary_data.txt
-random_data.txt
+binary_data_small.txt
+binary_data_medium.txt
+binary_data_large.txt
+random_data_small.txt
+random_data_medium.txt
+random_data_large.txt
