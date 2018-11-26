@@ -1,8 +1,8 @@
 #include "Algorithms.h"
 #include <iostream>
 #include <string>
-#include <vector>
 #include <cstdint>
+#include <vector>
 
 #ifndef BOYERMOORE_H
 #define BOYERMOORE_H
@@ -11,16 +11,19 @@
 
 class BoyerMoore 
 {
-  vector<int> badMatchTable;
-  vector<int> goodSuffixTable;
-  vector<int> borderPositionTable;
-  void generateBadMatchTable(string* pPattern);
-  void generateGoodSuffixTable(string* pPattern);
+  int * badMatchTable;
+  int * goodSuffixTable;
+  int * suffixTable;
+  string * pattern;
+  void generateBadMatchTable(string * pPattern);
+  void generateGoodSuffixTable(string * pPattern);
 public:
-  BoyerMoore(string* pPattern);
-  long Search(string* pSource);
-  long FindFirst(string* pSource);
-  vector<long> FindAll(string* pSource);
+  BoyerMoore(string * pPattern);
+  ~BoyerMoore();
+  long Search(string * pSource);
+  long Search(string * pSource, int offset);
+  long FindFirst(string * pSource);
+  vector<long> FindAll(string * pSource);
   int GetBadMatch(char letter);
   int GetGoodSuffix(char offset);
 };

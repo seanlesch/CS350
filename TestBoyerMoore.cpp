@@ -4,11 +4,39 @@
 void TestBoyerMoore::RunTests()
 {
   long result = 0;
-  string pattern = "ANPANMAN";
+
+  string pattern = "GCAGAGAG";
   string text = "GAGATAGATCTCGTAGAGCTTGAGATAGATCTCCTAGAGCTT";
   cout << "Pattern: " << pattern << endl;
   cout << "Text: " << text << endl;
   BoyerMoore *bm = new BoyerMoore(&pattern);
+
+  ConfirmBadMatch(bm, 'A', 1);
+  ConfirmBadMatch(bm, 'B', 8);
+  ConfirmBadMatch(bm, 'C', 6);
+  ConfirmBadMatch(bm, 'D', 8);
+  ConfirmBadMatch(bm, 'G', 2);
+  ConfirmBadMatch(bm, 'T', 8);
+  ConfirmBadMatch(bm, 'Z', 8);
+
+  ConfirmGoodSuffix(bm, 1, 1);
+  ConfirmGoodSuffix(bm, 2, 7);
+  ConfirmGoodSuffix(bm, 3, 4);
+  ConfirmGoodSuffix(bm, 4, 7);
+  ConfirmGoodSuffix(bm, 5, 2);
+  ConfirmGoodSuffix(bm, 6, 7);
+  ConfirmGoodSuffix(bm, 7, 7);
+  ConfirmGoodSuffix(bm, 8, 7);
+
+  result = bm->FindFirst(&text);
+  cout << "Result: " << result << endl;
+  delete bm;
+
+  pattern = "ANPANMAN";
+  text = "GAGATAGATCTCGTAGAGCTTGAGATAGATCTCCTAGAGCTT";
+  cout << "Pattern: " << pattern << endl;
+  cout << "Text: " << text << endl;
+  bm = new BoyerMoore(&pattern);
   
   ConfirmBadMatch(bm, 'A', 1);
   ConfirmBadMatch(bm, 'B', 8);
@@ -26,7 +54,8 @@ void TestBoyerMoore::RunTests()
   ConfirmGoodSuffix(bm, 7, 6);
   ConfirmGoodSuffix(bm, 8, 6);
 
-  result = bm->Search(&text);
+  result = bm->FindFirst(&text);
+  cout << "Result: " << result << endl;
   delete bm;
 
   pattern = "babac";
@@ -41,13 +70,14 @@ void TestBoyerMoore::RunTests()
   ConfirmBadMatch(bm, 'c', 5);
   ConfirmBadMatch(bm, 'd', 5);
 
-  ConfirmGoodSuffix(bm, 1, 5);
+  ConfirmGoodSuffix(bm, 1, 1);
   ConfirmGoodSuffix(bm, 2, 5);
   ConfirmGoodSuffix(bm, 3, 5);
   ConfirmGoodSuffix(bm, 4, 5);
   ConfirmGoodSuffix(bm, 5, 5);
 
-  result = bm->Search(&text);
+  result = bm->FindFirst(&text);
+  cout << "Result: " << result << endl;
   delete bm;
 
   pattern = "BARBER";
@@ -65,14 +95,67 @@ void TestBoyerMoore::RunTests()
   ConfirmBadMatch(bm, 'R', 3);
   ConfirmBadMatch(bm, 'Z', 6);
 
-  ConfirmGoodSuffix(bm, 1, 3);
-  ConfirmGoodSuffix(bm, 2, 6);
+  ConfirmGoodSuffix(bm, 1, 1);
+  ConfirmGoodSuffix(bm, 2, 3);
   ConfirmGoodSuffix(bm, 3, 6);
   ConfirmGoodSuffix(bm, 4, 6);
   ConfirmGoodSuffix(bm, 5, 6);
   ConfirmGoodSuffix(bm, 6, 6);
 
-  result = bm->Search(&text);
+  result = bm->FindFirst(&text);
+  cout << "Result: " << result << endl;
+  delete bm;
+
+  pattern = "ABCBAB";
+  text = "JIM_SAW_ME_IN_A_BARBERSHOP";
+  cout << "Pattern: " << pattern << endl;
+  cout << "Text: " << text << endl;
+  bm = new BoyerMoore(&pattern);
+
+  ConfirmBadMatch(bm, 'A', 1);
+  ConfirmBadMatch(bm, 'B', 2);
+  ConfirmBadMatch(bm, 'C', 3);
+  ConfirmBadMatch(bm, 'D', 6);
+  ConfirmBadMatch(bm, 'E', 6);
+  ConfirmBadMatch(bm, 'F', 6);
+  ConfirmBadMatch(bm, 'R', 6);
+  ConfirmBadMatch(bm, 'Z', 6);
+
+  ConfirmGoodSuffix(bm, 1, 1);
+  ConfirmGoodSuffix(bm, 2, 2);
+  ConfirmGoodSuffix(bm, 3, 4);
+  ConfirmGoodSuffix(bm, 4, 4);
+  ConfirmGoodSuffix(bm, 5, 4);
+  ConfirmGoodSuffix(bm, 6, 4);
+
+  result = bm->FindFirst(&text);
+  cout << "Result: " << result << endl;
+  delete bm;
+
+  pattern = "BAOBAB";
+  text = "JIM_SAW_ME_IN_A_BARBERSHOP";
+  cout << "Pattern: " << pattern << endl;
+  cout << "Text: " << text << endl;
+  bm = new BoyerMoore(&pattern);
+
+  ConfirmBadMatch(bm, 'A', 1);
+  ConfirmBadMatch(bm, 'B', 2);
+  ConfirmBadMatch(bm, 'C', 6);
+  ConfirmBadMatch(bm, 'D', 6);
+  ConfirmBadMatch(bm, 'E', 6);
+  ConfirmBadMatch(bm, 'F', 6);
+  ConfirmBadMatch(bm, 'R', 6);
+  ConfirmBadMatch(bm, 'Z', 6);
+
+  ConfirmGoodSuffix(bm, 1, 1);
+  ConfirmGoodSuffix(bm, 2, 2);
+  ConfirmGoodSuffix(bm, 3, 5);
+  ConfirmGoodSuffix(bm, 4, 5);
+  ConfirmGoodSuffix(bm, 5, 5);
+  ConfirmGoodSuffix(bm, 6, 5);
+
+  result = bm->FindFirst(&text);
+  cout << "Result: " << result << endl;
   delete bm;
 
   pattern = "TCCTAGAGCTT";
@@ -90,19 +173,82 @@ void TestBoyerMoore::RunTests()
   ConfirmBadMatch(bm, 'R', 11);
   ConfirmBadMatch(bm, 'Z', 11);
 
-  ConfirmGoodSuffix(bm, 1, 7);
-  ConfirmGoodSuffix(bm, 2, 11);
-  ConfirmGoodSuffix(bm, 3, 11);
-  ConfirmGoodSuffix(bm, 4, 11);
-  ConfirmGoodSuffix(bm, 5, 11);
-  ConfirmGoodSuffix(bm, 6, 11);
-  ConfirmGoodSuffix(bm, 7, 11);
-  ConfirmGoodSuffix(bm, 8, 11);
-  ConfirmGoodSuffix(bm, 9, 11);
-  ConfirmGoodSuffix(bm, 10, 11);
-  ConfirmGoodSuffix(bm, 11, 11);
+  ConfirmGoodSuffix(bm, 1, 2);
+  ConfirmGoodSuffix(bm, 2, 1);
+  ConfirmGoodSuffix(bm, 3, 10);
+  ConfirmGoodSuffix(bm, 4, 10);
+  ConfirmGoodSuffix(bm, 5, 10);
+  ConfirmGoodSuffix(bm, 6, 10);
+  ConfirmGoodSuffix(bm, 7, 10);
+  ConfirmGoodSuffix(bm, 8, 10);
+  ConfirmGoodSuffix(bm, 9, 10);
+  ConfirmGoodSuffix(bm, 10, 10);
+  ConfirmGoodSuffix(bm, 11, 10);
 
-  result = bm->Search(&text);
+  result = bm->FindFirst(&text);
+  cout << "Result: " << result << endl;
+  delete bm;
+
+  pattern = "TCCTAGAGCTT";
+  text = "GAGATAGATCTCGTAGAGCTTGAGATAGATCTCCTAGAGCTT";
+  cout << "Pattern: " << pattern << endl;
+  cout << "Text: " << text << endl;
+  bm = new BoyerMoore(&pattern);
+
+  ConfirmBadMatch(bm, 'A', 4);
+  ConfirmBadMatch(bm, 'B', 11);
+  ConfirmBadMatch(bm, 'C', 2);
+  ConfirmBadMatch(bm, 'D', 11);
+  ConfirmBadMatch(bm, 'G', 3);
+  ConfirmBadMatch(bm, 'T', 1);
+  ConfirmBadMatch(bm, 'R', 11);
+  ConfirmBadMatch(bm, 'Z', 11);
+
+  ConfirmGoodSuffix(bm, 1, 2);
+  ConfirmGoodSuffix(bm, 2, 1);
+  ConfirmGoodSuffix(bm, 3, 10);
+  ConfirmGoodSuffix(bm, 4, 10);
+  ConfirmGoodSuffix(bm, 5, 10);
+  ConfirmGoodSuffix(bm, 6, 10);
+  ConfirmGoodSuffix(bm, 7, 10);
+  ConfirmGoodSuffix(bm, 8, 10);
+  ConfirmGoodSuffix(bm, 9, 10);
+  ConfirmGoodSuffix(bm, 10, 10);
+  ConfirmGoodSuffix(bm, 11, 10);
+
+  vector<long> vresult = bm->FindAll(&text);
+  cout << "Result: " << result << endl;
+  delete bm;
+
+  pattern = "TC";
+  text = "GAGATAGATCTCGTAGAGCTTGAGATAGATCTCCTAGAGCTT";
+  cout << "Pattern: " << pattern << endl;
+  cout << "Text: " << text << endl;
+  bm = new BoyerMoore(&pattern);
+
+  ConfirmBadMatch(bm, 'A', 4);
+  ConfirmBadMatch(bm, 'B', 11);
+  ConfirmBadMatch(bm, 'C', 2);
+  ConfirmBadMatch(bm, 'D', 11);
+  ConfirmBadMatch(bm, 'G', 3);
+  ConfirmBadMatch(bm, 'T', 1);
+  ConfirmBadMatch(bm, 'R', 11);
+  ConfirmBadMatch(bm, 'Z', 11);
+
+  ConfirmGoodSuffix(bm, 1, 2);
+  ConfirmGoodSuffix(bm, 2, 1);
+  ConfirmGoodSuffix(bm, 3, 10);
+  ConfirmGoodSuffix(bm, 4, 10);
+  ConfirmGoodSuffix(bm, 5, 10);
+  ConfirmGoodSuffix(bm, 6, 10);
+  ConfirmGoodSuffix(bm, 7, 10);
+  ConfirmGoodSuffix(bm, 8, 10);
+  ConfirmGoodSuffix(bm, 9, 10);
+  ConfirmGoodSuffix(bm, 10, 10);
+  ConfirmGoodSuffix(bm, 11, 10);
+
+  vresult = bm->FindAll(&text);
+  cout << "Result: " << result << endl;
   delete bm;
 }
 
