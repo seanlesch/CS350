@@ -1,10 +1,10 @@
 #include "Algorithms.h"
 
-void brute(string pattern, string text) {
+void brute(string * pattern, string * text) {
     int text_i = 0;
     int pat_i = 0;
-    int text_len = text.length();
-    int pat_len = pattern.length();
+    int text_len = text->length();
+    int pat_len = pattern->length();
     int stop_i = text_len - pat_len;
   
     while (text_i < text_len - pat_len +1) {
