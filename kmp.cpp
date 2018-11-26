@@ -12,7 +12,7 @@ void kmp_prefix(string * pattern, int *& to_skip, int pattern_length) {
     to_skip[0] = 0;//first index is always 0 b/c it is the smallest prefix
     
     //creates the to_skip array
-    for (i_to_match; i_to_match <= pattern_length; ++i_to_match) {
+    for (i_to_match; i_to_match < pattern_length; ++i_to_match) {
 
         //increments the number of indices to skip for a text/pattern
         // mismatch and stores it in the to_skip array

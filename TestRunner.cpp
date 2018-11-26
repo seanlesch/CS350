@@ -1,6 +1,7 @@
 #include "TestRunner.h"
 
-TestRunner::TestRunner()
+
+void TestRunner::RunTests()
 {
   // Get current time stamp to append to filename.
   time_t rawtime;
@@ -13,12 +14,18 @@ TestRunner::TestRunner()
   resultsFile.open("results.txt", ofstream::out);
 
   testBinarySmallSet(resultsFile);
+  resultsFile.flush();
   testBinaryMediumSet(resultsFile);
+  resultsFile.flush();
   testBinaryLargeSet(resultsFile);
+  resultsFile.flush();
 
   testCharSmallSet(resultsFile);
+  resultsFile.flush();
   testCharMediumSet(resultsFile);
+  resultsFile.flush();
   testCharLargeSet(resultsFile);
+  resultsFile.flush();
 
   testLargeBook(resultsFile);
 
@@ -331,8 +338,15 @@ void TestRunner::testLargeBook(ofstream &resultsFile)
   f_in.open("birds_of_guernsey.txt");
   if (f_in.is_open())
   {
-    f_in >> source;
-    f_in.ignore(1000, '\n');
+    //f_in.unsetf(ios_base::skipws);
+    //f_in >> source;
+    //f_in.ignore(1000, '\n');
+    char ch;
+    while(!f_in.eof())
+    {
+      f_in.get(ch);
+      source += ch;
+    };    
   }
   f_in.close();
 

@@ -14,6 +14,6 @@ class TestRunner
   void testCharLargeSet(ofstream &resultsFile);
   void testLargeBook(ofstream &resultsFile);
 public:
-  TestRunner();
+  void RunTests();
 };
 

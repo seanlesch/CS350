@@ -8,16 +8,17 @@ void brute(string * pattern, string * text) {
     int stop_i = text_len - pat_len;
   
     while (text_i < text_len - pat_len +1) {
-        while (text[text_i + pat_i] == pattern[pat_i]) {
+        while (text->at(text_i + pat_i) == pattern->at(pat_i)) {
             if (pat_i == pat_len - 1) {
-                cout << text_i  << ",";
+                return;
+                //cout << text_i  << ",";
             }
             ++pat_i;
         }
         ++text_i;
         pat_i = 0;
     }
-    cout << endl;
+    //cout << endl;
     return;
     
 }
