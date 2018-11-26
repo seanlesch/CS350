@@ -29,7 +29,7 @@ void rabinKarp(string * pattern, string * source, int q){
                     break;
             }
             if(j == pLength){//Pattern fully matched.
-                cout << i << ",";
+                
             }
         }
         if(i < (sLength - pLength)){//Are we still in bounds? Then get next hash.
