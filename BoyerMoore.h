@@ -1,9 +1,8 @@
+#include "Algorithms.h"
 #include <iostream>
 #include <string>
 #include <vector>
 #include <cstdint>
-
-using namespace std;
 
 #define SIZE_CHAR (int)(256)
 
@@ -12,11 +11,11 @@ class BoyerMoore
   vector<int> badMatchTable;
   vector<int> goodSuffixTable;
   vector<int> borderPositionTable;
-  void generateBadMatchTable(string* pattern);
-  void generateGoodSuffixTable(string* pattern);
+  void generateBadMatchTable(string* pPattern);
+  void generateGoodSuffixTable(string* pPattern);
 public:
-  BoyerMoore(string* pattern);
-  int Search(string* source);
+  BoyerMoore(string* pPattern);
+  long Search(string* pSource);
   long FindFirst(string* pSource);
   vector<long> FindAll(string* pSource);
   int GetBadMatch(char letter);

@@ -1,5 +1,5 @@
 #include "Algorithms.h"
-
+#include "TestRunner.h"
 
 int main()
 {
@@ -27,6 +27,8 @@ int main()
     rabinKarp(pattern, text, 101);
     gettimeofday(&stop, NULL);
     cout << "Rabin-Karp took:" << stop.tv_usec - start.tv_usec << endl;
+
+    TestRunner tr();
 
      return 0;
 }

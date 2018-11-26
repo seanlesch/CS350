@@ -1,6 +1,6 @@
 #include "TestRunner.h"
 
-void TestRunner(void)
+TestRunner::TestRunner()
 {
   // Get current time stamp to append to filename.
   time_t rawtime;
@@ -12,20 +12,20 @@ void TestRunner(void)
   ofstream resultsFile;
   resultsFile.open("results.txt", ofstream::out);
 
-  TestBinarySmallSet(resultsFile);
-  TestBinaryMediumSet(resultsFile);
-  TestBinaryLargeSet(resultsFile);
+  testBinarySmallSet(resultsFile);
+  testBinaryMediumSet(resultsFile);
+  testBinaryLargeSet(resultsFile);
 
-  TestCharSmallSet(resultsFile);
-  TestCharMediumSet(resultsFile);
-  TestCharLargeSet(resultsFile);
+  testCharSmallSet(resultsFile);
+  testCharMediumSet(resultsFile);
+  testCharLargeSet(resultsFile);
 
-  TestLargeBook(resultsFile);
+  testLargeBook(resultsFile);
 
   resultsFile.close();
 }
 
-void TestBinarySmallSet(ofstream &resultsFile)
+void TestRunner::testBinarySmallSet(ofstream &resultsFile)
 {
   // Define Pattern:
   string pattern = "100110010101011101001101101";
@@ -74,7 +74,7 @@ void TestBinarySmallSet(ofstream &resultsFile)
   resultsFile << duration << " \n";
 }
 
-void TestBinaryMediumSet(ofstream &resultsFile)
+void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
 {
   // Define Pattern:
   string pattern = "100110010101011101001101101";
@@ -123,7 +123,7 @@ void TestBinaryMediumSet(ofstream &resultsFile)
   resultsFile << duration << " \n";
 }
 
-void TestBinaryLargeSet(ofstream &resultsFile)
+void TestRunner::testBinaryLargeSet(ofstream &resultsFile)
 {
   // Define Pattern:
   string pattern = "100110010101011101001101101";
@@ -172,7 +172,7 @@ void TestBinaryLargeSet(ofstream &resultsFile)
   resultsFile << duration << " \n";
 }
 
-void TestCharSmallSet(ofstream &resultsFile)
+void TestRunner::testCharSmallSet(ofstream &resultsFile)
 {
   // Define Pattern:
   string pattern = "FKTACXmTu";
@@ -221,7 +221,7 @@ void TestCharSmallSet(ofstream &resultsFile)
   resultsFile << duration << " \n";
 }
 
-void TestCharMediumSet(ofstream &resultsFile)
+void TestRunner::testCharMediumSet(ofstream &resultsFile)
 {
   // Define Pattern:
   string pattern = "FKTACXmTu";
@@ -270,7 +270,7 @@ void TestCharMediumSet(ofstream &resultsFile)
   resultsFile << duration << " \n";
 }
 
-void TestCharLargeSet(ofstream &resultsFile)
+void TestRunner::testCharLargeSet(ofstream &resultsFile)
 {
   // Define Pattern:
   string pattern = "FKTACXmTu";
@@ -319,7 +319,7 @@ void TestCharLargeSet(ofstream &resultsFile)
   resultsFile << duration << " \n";
 }
 
-void TestLargeBook(ofstream &resultsFile)
+void TestRunner::testLargeBook(ofstream &resultsFile)
 {
   // Define Pattern:
   string pattern = "Storm Petrel";

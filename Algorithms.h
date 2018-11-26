@@ -4,8 +4,8 @@
 #include <cstdlib>
 #include <cmath>
 #include <sys/time.h>
-#include "BoyerMoore.h"
-#include "TestBoyerMoore.h"
+
+
 
 using namespace std;
 

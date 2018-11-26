@@ -2,12 +2,18 @@
 #include <chrono>
 #include <ctime>
 #include <fstream>
+#include "BoyerMoore.h"
 
-void TestRunner(void);
-void TestBinarySmallSet(ofstream &resultsFile);
-void TestBinaryMediumSet(ofstream &resultsFile);
-void TestBinaryLargeSet(ofstream &resultsFile);
-void TestCharSmallSet(ofstream &resultsFile);
-void TestCharMediumSet(ofstream &resultsFile);
-void TestCharLargeSet(ofstream &resultsFile);
-void TestLargeBook(ofstream &resultsFile);
+class TestRunner
+{
+  void testBinarySmallSet(ofstream &resultsFile);
+  void testBinaryMediumSet(ofstream &resultsFile);
+  void testBinaryLargeSet(ofstream &resultsFile);
+  void testCharSmallSet(ofstream &resultsFile);
+  void testCharMediumSet(ofstream &resultsFile);
+  void testCharLargeSet(ofstream &resultsFile);
+  void testLargeBook(ofstream &resultsFile);
+public:
+  TestRunner();
+};
+

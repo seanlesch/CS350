@@ -1,19 +1,15 @@
-#include "Algorithms.h"
-#include <iostream>
-#include <string>
-#include <vector>
-#include <cstdint>
+#include "BoyerMoore.h"
 
-BoyerMoore::BoyerMoore(string* pattern)
+BoyerMoore::BoyerMoore(string* pPattern)
 {
   // Create BadMatchTable from pattern.
-  generateBadMatchTable(pattern);
+  generateBadMatchTable(pPattern);
 
   // Create GoodSuffixTable from pattern.
-  generateGoodSuffixTable(pattern);
+  generateGoodSuffixTable(pPattern);
 }
 
-int BoyerMoore::Search(string* source)
+long BoyerMoore::Search(string* pSource)
 {
   //  Perform the search.
   return -1;
@@ -24,11 +20,11 @@ int BoyerMoore::Search(string* source)
 /// shift table used also by Horspool's algorithm.
 /// </summary>
 /// <param name="pattern">The search pattern</param>
-void BoyerMoore::generateBadMatchTable(string* pattern)
+void BoyerMoore::generateBadMatchTable(string *pPattern)
 {
   // Get the length of the pattern
-  int patternLen = pattern->length();
-  
+  int patternLen = pPattern->length();
+
   // Initialize the BadMatchTable with the length of the pattern.
   for (int iter = 0; iter < SIZE_CHAR; iter++)
   {
@@ -38,7 +34,7 @@ void BoyerMoore::generateBadMatchTable(string* pattern)
   // Starting from the left
   for (int iter = 0; iter < (patternLen - 1); iter++)
   {
-    badMatchTable[pattern->at(iter)] = (patternLen - 1) - iter;
+    badMatchTable[pPattern->at(iter)] = (patternLen - 1) - iter;
   }
 }
 
@@ -46,10 +42,10 @@ void BoyerMoore::generateBadMatchTable(string* pattern)
 /// Generate the good suffix table.
 /// </summary>
 /// <param name="pattern">The search pattern</param>
-void BoyerMoore::generateGoodSuffixTable(string* pattern)
+void BoyerMoore::generateGoodSuffixTable(string *pPattern)
 {
   // Get the length of the pattern
-  int patternLen = pattern->length();
+  int patternLen = pPattern->length();
 
   // Initialize the goodSuffixTable and the borderPositionTable.
   for (int charIndex = patternLen; charIndex > 0; charIndex--)
@@ -66,7 +62,7 @@ void BoyerMoore::generateGoodSuffixTable(string* pattern)
   borderPositionTable[i] = j;
   while (i > 0)
   {
-    while ((j <= patternLen) && (pattern->at(i - 1) != pattern->at(j - 1)))
+    while ((j <= patternLen) && (pPattern->at(i - 1) != pPattern->at(j - 1)))
     {
       if (goodSuffixTable[j] == 0)
       {
@@ -90,14 +86,14 @@ int BoyerMoore::GetGoodSuffix(char offset)
   return goodSuffixTable[offset - 1];
 }
 
-long FindFirst(string* pSource)
+long BoyerMoore::FindFirst(string* pSource)
 {
   long result = -1;
 
   return result;
 }
 
-vector<long> FindAll(string* pSource)
+vector<long> BoyerMoore::FindAll(string* pSource)
 {
   vector<long> result;
 

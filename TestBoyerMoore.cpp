@@ -1,8 +1,9 @@
-#include "Algorithms.h"
+#include "TestBoyerMoore.h"
+
 
 TestBoyerMoore::TestBoyerMoore()
 {
-  int result = 0;
+  long result = 0;
   string pattern = "ANPANMAN";
   string text = "GAGATAGATCTCGTAGAGCTTGAGATAGATCTCCTAGAGCTT";
   cout << "Pattern: " << pattern << endl;
@@ -105,16 +106,16 @@ TestBoyerMoore::TestBoyerMoore()
   delete bm;
 }
 
-void TestBoyerMoore::ConfirmBadMatch(BoyerMoore * bm, char testChar, int expected)
+void TestBoyerMoore::ConfirmBadMatch(BoyerMoore * pBm, char testChar, int expected)
 {
-  int temp = bm->GetBadMatch(testChar);
+  int temp = pBm->GetBadMatch(testChar);
   string success = (temp == expected) ? " Pass" : " Fail";
   cout << "t(" << testChar << "): Expected=" << expected << ", Actual=" << temp << success << endl;
 }
 
-void TestBoyerMoore::ConfirmGoodSuffix(BoyerMoore * bm, char k, int expected)
+void TestBoyerMoore::ConfirmGoodSuffix(BoyerMoore *pBm, char k, int expected)
 {
-  int temp = bm->GetGoodSuffix(k);
+  int temp = pBm->GetGoodSuffix(k);
   string success = (temp == expected) ? " Pass" : " Fail";
   cout << "d2: Expected=" << expected << ", Actual=" << temp << success << endl;
 }
