@@ -46,21 +46,21 @@ void TestRunner::testBinarySmallSet(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(pattern, source);
+  brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(pattern, source, 101);
+  rabinKarp(&pattern, &source, 101);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(pattern, source);
+  kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -95,21 +95,21 @@ void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(pattern, source);
+  brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(pattern, source, 101);
+  rabinKarp(&pattern, &source, 101);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(pattern, source);
+  kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -144,21 +144,21 @@ void TestRunner::testBinaryLargeSet(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(pattern, source);
+  brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(pattern, source, 101);
+  rabinKarp(&pattern, &source, 101);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(pattern, source);
+  kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -193,21 +193,21 @@ void TestRunner::testCharSmallSet(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(pattern, source);
+  brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(pattern, source, 101);
+  rabinKarp(&pattern, &source, 101);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(pattern, source);
+  kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -242,21 +242,21 @@ void TestRunner::testCharMediumSet(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(pattern, source);
+  brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(pattern, source, 101);
+  rabinKarp(&pattern, &source, 101);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(pattern, source);
+  kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -291,21 +291,21 @@ void TestRunner::testCharLargeSet(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(pattern, source);
+  brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(pattern, source, 101);
+  rabinKarp(&pattern, &source, 101);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(pattern, source);
+  kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -340,21 +340,21 @@ void TestRunner::testLargeBook(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(pattern, source);
+  brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(pattern, source, 101);
+  rabinKarp(&pattern, &source, 101);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(pattern, source);
+  kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";

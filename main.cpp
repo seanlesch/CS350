@@ -3,7 +3,7 @@
 
 int main()
 {
-<<<<<<< HEAD
+  /*
      int len = 10000;
     
     string text(generateRandomBinary(len));
@@ -13,25 +13,23 @@ int main()
 
     gettimeofday(&start, NULL);
     cout << "Brute" << endl;
-    brute(pattern, text);
+    brute(&pattern, &text);
     gettimeofday(&stop, NULL);
     cout << "Brtue took:" << stop.tv_usec - start.tv_usec << endl;
 
     gettimeofday(&start, NULL);
     cout << "KMP" << endl;
-    kmp(pattern, text);
+    kmp(&pattern, &text);
     gettimeofday(&stop, NULL);
     cout << "KMP took:" << stop.tv_usec - start.tv_usec << endl;
     
     gettimeofday(&start, NULL);
     cout << "Rabin karp" << endl;
-    rabinKarp(pattern, text, 101);
+    rabinKarp(&pattern, &text, 101);
     gettimeofday(&stop, NULL);
     cout << "Rabin-Karp took:" << stop.tv_usec - start.tv_usec << endl;
-
+*/
     TestRunner tr();
 
-=======
->>>>>>> 706b26670d26991f901d8c80861b602bd06e0168
      return 0;
 }
