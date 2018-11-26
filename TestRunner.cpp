@@ -13,6 +13,8 @@ void TestRunner::RunTests()
   ofstream resultsFile;
   resultsFile.open("results.txt", ofstream::out);
 
+  resultsFile << "Test Case | Brute-Force | Rabin-Karp | Knuth-Morris-Pratt | Boyer-Moore\n";
+
   testBinarySmallSet(resultsFile);
   resultsFile.flush();
   testBinaryMediumSet(resultsFile);
