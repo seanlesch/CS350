@@ -3,6 +3,7 @@
 
 int main()
 {
+<<<<<<< HEAD
   /*
      int len = 10000;
     
@@ -31,6 +32,9 @@ int main()
 */
     TestRunner tr;
     tr.RunTests();
+=======
+     TestRunner tr();
+>>>>>>> f6745b5b8d023bc6de2b717757fe2f8526495656
 
      return 0;
 }
