@@ -28,4 +28,5 @@ int main()
     gettimeofday(&stop, NULL);
     cout << "Rabin-Karp took:" << stop.tv_usec - start.tv_usec << endl;
 
+     return 0;
 }
