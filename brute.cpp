@@ -9,10 +9,10 @@ void brute(string * pattern, string * text) {
   
     while (text_i < text_len - pat_len +1) {
         while (text->at(text_i + pat_i) == pattern->at(pat_i)) {
-            if (pat_i == pat_len - 1) {
+            /*if (pat_i == pat_len - 1) {
                 return;
                 //cout << text_i  << ",";
-            }
+            }*/
             ++pat_i;
         }
         ++text_i;
