@@ -1,4 +1,8 @@
 #include "Algorithms.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <cstdint>
 
 BoyerMoore::BoyerMoore(string pattern)
 {
@@ -47,17 +51,33 @@ void BoyerMoore::generateGoodSuffixTable(string pattern)
   // Get the length of the pattern
   int patternLen = pattern.length();
 
-  // Starting from the right, look for matching 
-  // characters that have a different character infront
-  // of them.
+  // Initialize the goodSuffixTable and the borderPositionTable.
   for (int charIndex = patternLen; charIndex > 0; charIndex--)
   {
-    //for (int iter = charIndex; iter > 0; iter--)
-    //{
-      goodSuffixTable.push_back(patternLen);
-    //}
+    goodSuffixTable.push_back(patternLen);
+    borderPositionTable.push_back(0);
   }
 
+  // Starting from the right, look for matching
+  // characters that have a different character infront
+  // of them.
+  int i = patternLen, j = patternLen + 1;
+
+  borderPositionTable[i] = j;
+  while (i > 0)
+  {
+    while ((j <= patternLen) && (pattern[i - 1] != pattern[j - 1]))
+    {
+      if (goodSuffixTable[j] == 0)
+      {
+        goodSuffixTable[j] = j - i;
+      }
+      j = borderPositionTable[j];
+    }
+    i--;
+    j--;
+    borderPositionTable[i] = j;
+  }
 }
 
 int BoyerMoore::GetBadMatch(char letter)
@@ -68,4 +88,19 @@ int BoyerMoore::GetBadMatch(char letter)
 int BoyerMoore::GetGoodSuffix(char offset)
 {
   return goodSuffixTable[offset - 1];
+}
+
+long FindFirst(string *pSource)
+{
+  long result = -1;
+
+  return result;
+}
+
+vector<long> FindAll(string *pSource)
+{
+  vector<long> result;
+
+  return result;
+
 }

@@ -1,12 +1,12 @@
 #include "Algorithms.h"
 #include <fstream>
-//
+
 string generateRandomDNA(const int len){
-    static const char alphanum[] = "ACTG";
+    static const char alphabet[] ="ACTG";
     string s = string(len, '0');
 
     for (int i = 0; i < len; ++i) {
-        s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
+        s[i] = alphabet[rand() % (sizeof(alphabet) - 1)];
     }
     return s;
 }
