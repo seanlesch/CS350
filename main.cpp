@@ -3,7 +3,8 @@
 
 int main()
 {
-     TestRunner tr();
+     TestRunner tr;
+     tr.RunTests();
 
      return 0;
 }

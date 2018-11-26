@@ -4,6 +4,9 @@
 #include <vector>
 #include <cstdint>
 
+#ifndef BOYERMOORE_H
+#define BOYERMOORE_H
+
 #define SIZE_CHAR (int)(256)
 
 class BoyerMoore 
@@ -21,3 +24,5 @@ public:
   int GetBadMatch(char letter);
   int GetGoodSuffix(char offset);
 };
+
+#endif

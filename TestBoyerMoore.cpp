@@ -1,7 +1,7 @@
 #include "TestBoyerMoore.h"
 
 
-TestBoyerMoore::TestBoyerMoore()
+void TestBoyerMoore::RunTests()
 {
   long result = 0;
   string pattern = "ANPANMAN";

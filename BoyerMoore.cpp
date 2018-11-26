@@ -16,8 +16,8 @@ long BoyerMoore::Search(string* pSource)
 }
 
 /// <summary>
-/// Generate the bad match table. This is essentially the 
-/// shift table used also by Horspool's algorithm.
+/// Generate the bad match table. This is the 
+/// same table used also by Horspool's algorithm.
 /// </summary>
 /// <param name="pattern">The search pattern</param>
 void BoyerMoore::generateBadMatchTable(string *pPattern)
@@ -25,7 +25,7 @@ void BoyerMoore::generateBadMatchTable(string *pPattern)
   // Get the length of the pattern
   int patternLen = pPattern->length();
 
-  // Initialize the BadMatchTable with the length of the pattern.
+  // Initialize the bad match table with the length of the pattern.
   for (int iter = 0; iter < SIZE_CHAR; iter++)
   {
     badMatchTable.push_back(patternLen);

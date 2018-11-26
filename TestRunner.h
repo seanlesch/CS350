@@ -4,6 +4,9 @@
 #include <fstream>
 #include "BoyerMoore.h"
 
+#ifndef TESTRUNNER_H
+#define TESTRUNNER_H
+
 class TestRunner
 {
   void testBinarySmallSet(ofstream &resultsFile);
@@ -17,3 +20,4 @@ public:
   void RunTests();
 };
 
+#endif
