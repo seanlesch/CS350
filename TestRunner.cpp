@@ -67,7 +67,7 @@ void TestBinarySmallSet(ofstream &resultsFile)
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  BoyerMoore bm(pattern);
+  BoyerMoore bm(&pattern);
   offset = bm.FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
@@ -116,7 +116,7 @@ void TestBinaryMediumSet(ofstream &resultsFile)
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  BoyerMoore bm(pattern);
+  BoyerMoore bm(&pattern);
   offset = bm.FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
@@ -165,7 +165,7 @@ void TestBinaryLargeSet(ofstream &resultsFile)
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  BoyerMoore bm(pattern);
+  BoyerMoore bm(&pattern);
   offset = bm.FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
@@ -214,7 +214,7 @@ void TestCharSmallSet(ofstream &resultsFile)
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  BoyerMoore bm(pattern);
+  BoyerMoore bm(&pattern);
   offset = bm.FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
@@ -263,7 +263,7 @@ void TestCharMediumSet(ofstream &resultsFile)
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  BoyerMoore bm(pattern);
+  BoyerMoore bm(&pattern);
   offset = bm.FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
@@ -312,7 +312,7 @@ void TestCharLargeSet(ofstream &resultsFile)
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  BoyerMoore bm(pattern);
+  BoyerMoore bm(&pattern);
   offset = bm.FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
@@ -361,7 +361,7 @@ void TestLargeBook(ofstream &resultsFile)
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  BoyerMoore bm(pattern);
+  BoyerMoore bm(&pattern);
   offset = bm.FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
