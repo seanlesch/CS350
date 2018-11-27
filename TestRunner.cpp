@@ -124,6 +124,7 @@ void TestRunner::testBinary100mil(ofstream &resultsFile)
   resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
+<<<<<<< Updated upstream
 void TestRunner::testBinary100milFound(ofstream &resultsFile)
 {
   // Define Pattern:
@@ -180,10 +181,63 @@ void TestRunner::testBinary100milFound(ofstream &resultsFile)
   resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
+=======
+>>>>>>> Stashed changes
 void TestRunner::testBinary1mil(ofstream &resultsFile)
 {
   // Define Pattern:
   string pattern = generateSingleChar(100);
+  string source;
+  long offset = -1;
+
+  // Open file to be searched.
+  ifstream f_in;
+  f_in.open("binary_data_1mil.txt");
+  if (f_in.is_open())
+  {
+    f_in >> source;
+    f_in.ignore(1000, '\n');
+  }
+  f_in.close();
+
+  resultsFile << "Binary 1mil, ";
+
+  // Search using Brute-Force:
+  auto start = std::chrono::high_resolution_clock::now();
+  long locBrute = brute(&pattern, &source);
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using Rabin-Karp:
+  start = std::chrono::high_resolution_clock::now();
+  long locRK = rabinKarp(&pattern, &source, 101, 2);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using KMP:
+  start = std::chrono::high_resolution_clock::now();
+  long locKMP = kmp(&pattern, &source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using BoyerMoore:
+  start = std::chrono::high_resolution_clock::now();
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << " \n";
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
+}
+
+void TestRunner::testBinary1milFound(ofstream &resultsFile)
+{
+  // Define Pattern:
+  string pattern = "110101111001111100101001100011111100101010010110010001000111101101100010110111010111100101010101111001101011111110001";
   string source;
   long offset = -1;
 
@@ -282,6 +336,56 @@ void TestRunner::testBinary10mil(ofstream &resultsFile)
   resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
+void TestRunner::testBinary10milFound(ofstream &resultsFile)
+{
+  // Define Pattern:
+  string pattern = "11111100100000001010111010000111011110111111000110001001111000010100111111001001010011101110110100100111000101";
+  string source;
+  long offset = -1;
+
+  // Open file to be searched.
+  ifstream f_in;
+  f_in.open("binary_data_10mil.txt");
+  if (f_in.is_open())
+  {
+    f_in >> source;
+    f_in.ignore(1000, '\n');
+  }
+  f_in.close();
+
+  resultsFile << "Binary 10mil, ";
+
+  // Search using Brute-Force:
+  auto start = std::chrono::high_resolution_clock::now();
+  long locBrute = brute(&pattern, &source);
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using Rabin-Karp:
+  start = std::chrono::high_resolution_clock::now();
+  long locRK = rabinKarp(&pattern, &source, 101, 2);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using KMP:
+  start = std::chrono::high_resolution_clock::now();
+  long locKMP = kmp(&pattern, &source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using BoyerMoore:
+  start = std::chrono::high_resolution_clock::now();
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << " \n";
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
+}
 void TestRunner::testBinaryConsecutive(ofstream &resultsFile)
 {
   // Define Pattern:
@@ -538,10 +642,112 @@ void TestRunner::testAlphanum1mil(ofstream &resultsFile)
   resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
+void TestRunner::testAlphanum1milFound(ofstream &resultsFile)
+{
+  // Define Pattern:
+  string pattern = "JQ9WGmFTjYxhPnKuvKDMWWCzSva58kqOgBkfeTiSMqiKDFFiJOrURRQshup7XA41rUDzVlPEhocJumaEV4y6J6JKdA9KY3yesww0Mfv9onpQCTkwJ";
+  string source;
+  long offset = -1;
+
+  // Open file to be searched.
+  ifstream f_in;
+  f_in.open("Alphanum_1mil.txt");
+  if (f_in.is_open())
+  {
+    f_in >> source;
+    f_in.ignore(1000, '\n');
+  }
+  f_in.close();
+
+  resultsFile << "Alphanum 1mil, ";
+
+  // Search using Brute-Force:
+  auto start = std::chrono::high_resolution_clock::now();
+  long locBrute = brute(&pattern, &source);
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using Rabin-Karp:
+  start = std::chrono::high_resolution_clock::now();
+  long locRK = rabinKarp(&pattern, &source, 101, 64);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using KMP:
+  start = std::chrono::high_resolution_clock::now();
+  long locKMP = kmp(&pattern, &source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using BoyerMoore:
+  start = std::chrono::high_resolution_clock::now();
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << " \n";
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
+}
+
 void TestRunner::testAlphanum10mil(ofstream &resultsFile)
 {
   // Define Pattern:
   string pattern = "qJFgPUMNdwP6ZeH8E6p8iLi101RFgqu9RQgoDsuNJLATvaQyJQ3PrFtDtzPflRuOtJbr4qQR6KOaOTlPv7Qp9e3xCAJWhsGqP3Wz0Sl1agugxRamF";
+  string source;
+  long offset = -1;
+
+  // Open file to be searched.
+  ifstream f_in;
+  f_in.open("Alphanum_10mil.txt");
+  if (f_in.is_open())
+  {
+    f_in >> source;
+    f_in.ignore(1000, '\n');
+  }
+  f_in.close();
+
+  resultsFile << "Alphanum 10mil, ";
+
+  // Search using Brute-Force:
+  auto start = std::chrono::high_resolution_clock::now();
+  long locBrute = brute(&pattern, &source);
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using Rabin-Karp:
+  start = std::chrono::high_resolution_clock::now();
+  long locRK = rabinKarp(&pattern, &source, 101, 64);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using KMP:
+  start = std::chrono::high_resolution_clock::now();
+  long locKMP = kmp(&pattern, &source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using BoyerMoore:
+  start = std::chrono::high_resolution_clock::now();
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << " \n";
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
+}
+
+void TestRunner::testAlphanum10milFound(ofstream &resultsFile)
+{
+  // Define Pattern:
+  string pattern = "29Z2F8XqGjg8GGaYUnDBBVzA0YmnJNq20Jr8Ncc0AeoQ7P39d8LE5ge0BkAEHXaPlFh8UYttN7BynTWaecgCI48HPJG8GNmQRqzDhLIry1RvOZ9Vm";
   string source;
   long offset = -1;
 
@@ -945,10 +1151,60 @@ void TestRunner::testDNA1mil(ofstream &resultsFile)
   resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
-void TestRunner::testDNA10mil(ofstream &resultsFile)
+void TestRunner::testDNA1milFound(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "ATAGTATGGTAAGCCTTCGGAATGCGGTTTTCCATGCGACACGAGAGCGCCTCTACTAAGTAGGTAACGGTTGACGGTGTGGAGGGCAGATGTGTGTTACGATACAAGGTTTCTTCAGTACGCCGGGTCCTTGATAGCATGGG";
+  string pattern = "CCCGACTGATGTAAAAAGTTAAGATGTTTGGATGGATAAATGACTAGGCGCTATACCGTAGAGGAATCTGAGGCCTGTCCTTTGTAAGCACTGCGGGGTAACTGTTACATAAAGG";
+  string source;
+
+  // Open file to be searched.
+  ifstream f_in;
+  f_in.open("DNA_1mil.txt");
+  if (f_in.is_open())
+  {
+    f_in >> source;
+    f_in.ignore(1000, '\n');
+  }
+  f_in.close();
+
+  resultsFile << "DNA 1mil, ";
+
+  // Search using Brute-Force:
+  auto start = std::chrono::high_resolution_clock::now();
+  long locBrute = brute(&pattern, &source);
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using Rabin-Karp:
+  start = std::chrono::high_resolution_clock::now();
+  long locRK = rabinKarp(&pattern, &source, 101, 4);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using KMP:
+  start = std::chrono::high_resolution_clock::now();
+  long locKMP = kmp(&pattern, &source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using BoyerMoore:
+  start = std::chrono::high_resolution_clock::now();
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << " \n";
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
+}
+
+void TestRunner::testDNA10milFound(ofstream &resultsFile)
+{
+  // Define Pattern:
+  string pattern = "CAGTTTCGCATGACATTACAATCTGCCATCAACCAGTCCCGCTTCTGTAGCATAGTATTATCAGGCTACTCTCAAATGATGGCCGTGACAATTATTCTTTCATGGACAATCCGTC";
   string source;
 
   // Open file to be searched.
