@@ -12,7 +12,7 @@ void TestRunner::RunTests()
   // Open file for output.
   ofstream resultsFile;
   resultsFile.open("results.txt", ofstream::out);
-/*
+
   resultsFile << "Test Case | Brute-Force | Rabin-Karp | Knuth-Morris-Pratt | Boyer-Moore\n";
   cout << "Testing Binary Data:\n";
   testBinaryMediumSet(resultsFile);
@@ -21,6 +21,13 @@ void TestRunner::RunTests()
   testBinaryLargeSet(resultsFile);
   resultsFile.flush();
   cout << "Large test complete.\n";
+
+  testBinaryAlternating(resultsFile);
+  resultsFile.flush();
+  cout << "Alternating test complete.\n";
+  testBinaryConsecutive(resultsFile);
+  resultsFile.flush();
+  cout << "Consecutive test complete.\n";
 
   cout << "Test Random Character Data:\n";
   testCharMediumSet(resultsFile);
@@ -31,7 +38,7 @@ void TestRunner::RunTests()
   cout << "Large test complete.\n";
 
   cout << "Testing Spoken English\n";
-  testLargeBook(resultsFile);*/
+  testLargeBook(resultsFile);
 
   cout << "Testing single character\n";
   testSingleChar(resultsFile);
@@ -84,7 +91,7 @@ void TestRunner::testBinarySmallSet(ofstream &resultsFile)
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 2);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -124,20 +131,24 @@ void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
   resultsFile << "Binary Medium Set: ";
 
   // Search using Brute-Force:
+  cout << "brute\n";
   auto start = std::chrono::high_resolution_clock::now();
   brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
+  cout << "done\n";
 
   // Search using Rabin-Karp:
+  cout << "rk\n";
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 2);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
+  cout << "kmp\n";
   start = std::chrono::high_resolution_clock::now();
   kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
@@ -145,6 +156,7 @@ void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
+  cout << "bm\n";
   start = std::chrono::high_resolution_clock::now();
   boyerMoore(&source, &pattern);
   stop = std::chrono::high_resolution_clock::now();
@@ -180,7 +192,103 @@ void TestRunner::testBinaryLargeSet(ofstream &resultsFile)
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 2);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using KMP:
+  start = std::chrono::high_resolution_clock::now();
+  kmp(&pattern, &source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using BoyerMoore:
+  start = std::chrono::high_resolution_clock::now();
+  boyerMoore(&source, &pattern);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << " \n";
+}
+
+void TestRunner::testBinaryConsecutive(ofstream &resultsFile)
+{
+  // Define Pattern:
+  string pattern = "00000000000000000000000000000000000000001111111111111111111111111111111111111111";
+  string source;
+  long offset = -1;
+
+  // Open file to be searched.
+  ifstream f_in;
+  f_in.open("binary_consecutive_data.txt");
+  if (f_in.is_open())
+  {
+    f_in >> source;
+    f_in.ignore(1000, '\n');
+  }
+  f_in.close();
+
+  resultsFile << "Binary Consecutive Set: ";
+
+  // Search using Brute-Force:
+  auto start = std::chrono::high_resolution_clock::now();
+  brute(&pattern, &source);
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using Rabin-Karp:
+  start = std::chrono::high_resolution_clock::now();
+  rabinKarp(&pattern, &source, 101, 2);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using KMP:
+  start = std::chrono::high_resolution_clock::now();
+  kmp(&pattern, &source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using BoyerMoore:
+  start = std::chrono::high_resolution_clock::now();
+  boyerMoore(&source, &pattern);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << " \n";
+}
+
+void TestRunner::testBinaryAlternating(ofstream &resultsFile)
+{
+  // Define Pattern:
+  string pattern = "110101010101010101010101010101010101010101010101";
+  string source;
+  long offset = -1;
+
+  // Open file to be searched.
+  ifstream f_in;
+  f_in.open("binary_alternating_data.txt");
+  if (f_in.is_open())
+  {
+    f_in >> source;
+    f_in.ignore(1000, '\n');
+  }
+  f_in.close();
+
+  resultsFile << "Binary Alternating Set: ";
+
+  // Search using Brute-Force:
+  auto start = std::chrono::high_resolution_clock::now();
+  brute(&pattern, &source);
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using Rabin-Karp:
+  start = std::chrono::high_resolution_clock::now();
+  rabinKarp(&pattern, &source, 101, 2);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -203,7 +311,7 @@ void TestRunner::testBinaryLargeSet(ofstream &resultsFile)
 void TestRunner::testCharSmallSet(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "FKTACXmTu";
+  string pattern = "qJFgPUMNdwP6ZeH8E6p8iLi101RFgqu9RQgoDsuNJLATvaQyJQ3PrFtDtzPflRuOtJbr4qQR6KOaOTlPv7Qp9e3xCAJWhsGqP3Wz0Sl1agugxRamF";
   string source;
   long offset = -1;
 
@@ -228,7 +336,7 @@ void TestRunner::testCharSmallSet(ofstream &resultsFile)
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 64);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -251,7 +359,7 @@ void TestRunner::testCharSmallSet(ofstream &resultsFile)
 void TestRunner::testCharMediumSet(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "FKTACXmTu";
+  string pattern = "qJFgPUMNdwP6ZeH8E6p8iLi101RFgqu9RQgoDsuNJLATvaQyJQ3PrFtDtzPflRuOtJbr4qQR6KOaOTlPv7Qp9e3xCAJWhsGqP3Wz0Sl1agugxRamF";
   string source;
   long offset = -1;
 
@@ -276,7 +384,7 @@ void TestRunner::testCharMediumSet(ofstream &resultsFile)
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 64);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -299,7 +407,7 @@ void TestRunner::testCharMediumSet(ofstream &resultsFile)
 void TestRunner::testCharLargeSet(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "FKTACXmTu";
+  string pattern = "qJFgPUMNdwP6ZeH8E6p8iLi101RFgqu9RQgoDsuNJLATvaQyJQ3PrFtDtzPflRuOtJbr4qQR6KOaOTlPv7Qp9e3xCAJWhsGqP3Wz0Sl1agugxRamF";
   string source;
   long offset = -1;
 
@@ -324,7 +432,7 @@ void TestRunner::testCharLargeSet(ofstream &resultsFile)
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 64);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -379,7 +487,7 @@ void TestRunner::testLargeBook(ofstream &resultsFile)
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 256);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -417,42 +525,37 @@ void TestRunner::testSingleChar(ofstream &resultsFile)
 
   resultsFile << "Single Char: ";
 
-  cout << "Doing brute\n";
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
   brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
-  cout << "Brute done\n";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 2);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
-  cout << "Rabin karp done\n";
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
   kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
-  cout << "Kmp done\n";
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
   boyerMoore(&source, &pattern);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  cout << "Bm done\n";
 }
 
 void TestRunner::testDNAMedium(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "ATAGTATGGTAAGCCTTCGGAATGCGGTTTTCCATGCGACACGAGAGCG";
+  string pattern = "ATAGTATGGTAAGCCTTCGGAATGCGGTTTTCCATGCGACACGAGAGCGCCTCTACTAAGTAGGTAACGGTTGACGGTGTGGAGGGCAGATGTGTGTTACGATACAAGGTTTCTTCAGTACGCCGGGTCCTTGATAGCATGGG";
   string source;
 
   // Open file to be searched.
@@ -476,7 +579,7 @@ void TestRunner::testDNAMedium(ofstream &resultsFile)
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 4);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -500,7 +603,7 @@ void TestRunner::testDNAMedium(ofstream &resultsFile)
 void TestRunner::testDNALarge(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "ATAGTATGGTAAGCCTTCGGAATGCGGTTTTCCATGCGACACGAGAGCG";
+  string pattern = "ATAGTATGGTAAGCCTTCGGAATGCGGTTTTCCATGCGACACGAGAGCGCCTCTACTAAGTAGGTAACGGTTGACGGTGTGGAGGGCAGATGTGTGTTACGATACAAGGTTTCTTCAGTACGCCGGGTCCTTGATAGCATGGG";
   string source;
 
   // Open file to be searched.
@@ -524,7 +627,7 @@ void TestRunner::testDNALarge(ofstream &resultsFile)
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 4);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -547,7 +650,7 @@ void TestRunner::testDNALarge(ofstream &resultsFile)
 void TestRunner::testDNALarge2(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "ATAGTATGGTAAGCCTTCGGAATGCGGTTTTCCATGCGACACGAGAGCGATAGTATGGTAAGCCTTCGGAATGCGGTTTTCCATGCGACACGAGAGCG";
+  string pattern = "ATAGTATGGTAAGCCTTCGGAATGCGGTTTTCCATGCGACACGAGAGCGCCTCTACTAAGTAGGTAACGGTTGACGGTGTGGAGGGCAGATGTGTGTTACGATACAAGGTTTCTTCAGTACGCCGGGTCCTTGATAGCATGGG";
   string source;
 
   // Open file to be searched.
@@ -571,7 +674,7 @@ void TestRunner::testDNALarge2(ofstream &resultsFile)
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 4);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -594,7 +697,7 @@ void TestRunner::testDNALarge2(ofstream &resultsFile)
 void TestRunner::testDNALarge3(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "ATAGTATGGTAAGCCTTCGGAATGCGGTTTTCCATGCGACACGAGAGCG";
+  string pattern = "ATAGTATGGTAAGCCTTCGGAATGCGGTTTTCCATGCGACACGAGAGCGCCTCTACTAAGTAGGTAACGGTTGACGGTGTGGAGGGCAGATGTGTGTTACGATACAAGGTTTCTTCAGTACGCCGGGTCCTTGATAGCATGGG";
   string source;
 
   // Open file to be searched.
@@ -618,7 +721,7 @@ void TestRunner::testDNALarge3(ofstream &resultsFile)
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101);
+  rabinKarp(&pattern, &source, 101, 4);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";

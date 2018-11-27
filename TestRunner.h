@@ -22,8 +22,11 @@ class TestRunner
     void testDNALarge(ofstream &resultsFile);
     void testDNALarge2(ofstream &resultsFile);
     void testDNALarge3(ofstream &resultsFile);
-public:
-  void RunTests();
+    void testBinaryAlternating(ofstream &resultsFile);
+    void testBinaryConsecutive(ofstream &resultsFile);
+
+  public:
+    void RunTests();
 };
 
 #endif

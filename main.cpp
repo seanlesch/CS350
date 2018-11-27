@@ -3,14 +3,10 @@
 
 int main()
 {
+     //generateStrings();
      TestRunner tr;
-<<<<<<< Updated upstream
      tr.RunTests();
-=======
-     
-    // generateStrings();
->>>>>>> Stashed changes
 
-     tr.RunTests();
+     
      return 0;
 }

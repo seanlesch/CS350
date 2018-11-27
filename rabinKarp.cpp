@@ -1,7 +1,8 @@
 #include "Algorithms.h"
-#define d 256
+
 //worst-case time is O(nm).
-void rabinKarp(string * pattern, string * source, int q){
+//d is the size of the alphabet to test.
+void rabinKarp(string * pattern, string * source, int q, int d){
     int pLength = pattern->length();
     int sLength = source->length();
     int p = 0; //hash value of pattern string.
