@@ -16,3 +16,7 @@ void generateStrings();
 string generateRandomBinary(const int len);
 string generateRandomChars(const int len);
 string generateRandomDNA(const int len);
+string generateSingleChar(const int len);
+void boyerMoore(string *, string *);
+void preprocess_strong_suffix(int *, int *, string *, int);
+void preprocess_case2(int *, int *, string *, int);

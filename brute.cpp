@@ -1,5 +1,5 @@
 #include "Algorithms.h"
-
+//Worst case O(m*(n-m+1))
 void brute(string * pattern, string * text) {
     int text_i = 0;
     int pat_i = 0;

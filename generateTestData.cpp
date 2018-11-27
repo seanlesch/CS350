@@ -11,6 +11,12 @@ string generateRandomDNA(const int len){
     return s;
 }
 
+string generateSingleChar(const int len){
+    string s = string(len, '0');
+    s += "1";
+    return s;
+}
+
 string generateRandomChars(const int len)
 {
     static const char alphanum[] =
@@ -48,18 +54,30 @@ void generateStrings(){
     fout << generateRandomBinary(1000000000);
     fout.close();*/
 
-    fout.open("DNA_small.txt");
-    fout << generateRandomDNA(1000) << endl;
+    cout << "Generating Single Char Data...\n";
+    fout.open("Single_char_data.txt");
+    fout << generateSingleChar(1000000);
     fout.close();
+/*
+    cout << "Generating DNA Data...";
     fout.open("DNA_medium.txt");
     fout << generateRandomDNA(1000000) << endl;
     fout.close();
+    cout << "...";
     fout.open("DNA_large.txt");
     fout << generateRandomDNA(1000000000) << endl;
     fout.close();
-
-    cout << "Done!\n";
+    cout << "...";
+    fout.open("DNA_large_2.txt");
+    fout << generateRandomDNA(1000000000) << endl;
     fout.close();
+    cout << "...";
+    fout.open("DNA_large_3.txt");
+    fout << generateRandomDNA(1000000000) << endl;
+    fout.close();
+*/
+    cout << "Done!\n";
+   
 
   /*  fout.open("random_data_small.txt");
     fout << generateRandomChars(1000);

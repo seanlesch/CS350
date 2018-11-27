@@ -1,6 +1,6 @@
 #include "Algorithms.h"
 #define d 256
-
+//worst-case time is O(nm).
 void rabinKarp(string * pattern, string * source, int q){
     int pLength = pattern->length();
     int sLength = source->length();
