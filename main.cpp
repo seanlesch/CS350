@@ -3,7 +3,7 @@
 
 int main()
 {
-     //generateStrings();
+     generateStrings();
      TestRunner tr;
      tr.RunTests();
 
