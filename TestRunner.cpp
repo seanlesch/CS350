@@ -72,7 +72,7 @@ void TestRunner::RunTests()
 void TestRunner::testBinary100mil(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
+  string pattern = generateSingleChar(100);
   string source;
   long offset = -1;
 
@@ -127,7 +127,7 @@ void TestRunner::testBinary100mil(ofstream &resultsFile)
 void TestRunner::testBinary1mil(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
+  string pattern = generateSingleChar(100);
   string source;
   long offset = -1;
 
@@ -178,7 +178,7 @@ void TestRunner::testBinary1mil(ofstream &resultsFile)
 void TestRunner::testBinary10mil(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
+  string pattern = generateSingleChar(100);
   string source;
   long offset = -1;
 

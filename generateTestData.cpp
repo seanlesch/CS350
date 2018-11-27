@@ -73,7 +73,7 @@ void generateStrings(){
     fout << generateBinaryConsecutive(1000000);
     fout.close();*/
     fout.open("binary_data_100mil.txt");
-    fout << generateRandomBinary(100000);
+    fout << generateRandomBinary(100000000);
     fout.close();
     fout.open("binary_data_1mil.txt");
     fout << generateRandomBinary(1000000);
