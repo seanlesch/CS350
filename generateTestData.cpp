@@ -72,10 +72,7 @@ void generateStrings(){
     fout.open("binary_consecutive_data.txt");
     fout << generateBinaryConsecutive(1000000);
     fout.close();*/
-    fout.open("binary_data_10k.txt");
-    fout << generateRandomBinary(10000);
-    fout.close();
-    fout.open("binary_data_100k.txt");
+    fout.open("binary_data_100mil.txt");
     fout << generateRandomBinary(100000);
     fout.close();
     fout.open("binary_data_1mil.txt");
@@ -91,45 +88,30 @@ void generateStrings(){
     fout.close();*/
 
     cout << "Generating DNA Data...";
-    fout.open("DNA_10k.txt");
-    fout << generateRandomDNA(10000) << endl;
-    fout.close();
-    cout << "...";
-    fout.open("DNA_100k.txt");
-    fout << generateRandomDNA(100000) << endl;
+    fout.open("DNA_100mil.txt");
+    fout << generateRandomDNA(100000000) << endl;
     fout.close();
     fout.open("DNA_1mil.txt");
     fout << generateRandomDNA(1000000) << endl;
     fout.close();
-    cout << "...";
     fout.open("DNA_10mil.txt");
     fout << generateRandomDNA(10000000) << endl;
     fout.close();
-    cout << "...";
+
 
     cout << "Generating WORST CASE Data...";
-    fout.open("Single_10k.txt");
-    fout << generateSingleChar(10000) << endl;
-    fout.close();
-    cout << "...";
-    fout.open("Single_100k.txt");
-    fout << generateSingleChar(100000) << endl;
+    fout.open("Single_100mil.txt");
+    fout << generateSingleChar(100000000) << endl;
     fout.close();
     fout.open("Single_1mil.txt");
     fout << generateSingleChar(1000000) << endl;
     fout.close();
-    cout << "...";
     fout.open("Single_10mil.txt");
     fout << generateSingleChar(10000000) << endl;
     fout.close();
-    cout << "...";
-    cout << "Done!\n";
 
-    fout.open("Alphanum_10k.txt");
-    fout << generateRandomChars(10000);
-    fout.close();
-    fout.open("Alphanum_100k.txt");
-    fout << generateRandomChars(100000);
+    fout.open("Alphanum_100mil.txt");
+    fout << generateRandomChars(100000000);
     fout.close();
     fout.open("Alphanum_1mil.txt");
     fout << generateRandomChars(1000000);
