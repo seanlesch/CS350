@@ -9,7 +9,7 @@ long brute(string * pattern, string * text) {
     for(text_i;text_i < stop_i; ++text_i){
         while (text->at(text_i + pat_i) == pattern->at(pat_i)) {
             ++pat_i;
-            if(pat_i == pat_len-1){
+            if(pat_i == pat_len){
                 return text_i;
             }
         }
