@@ -82,7 +82,7 @@ void generateStrings(){
     fout.open("binary_data_large.txt");
     fout << generateRandomBinary(1000000000);
     fout.close();
-
+*/
     cout << "Generating Single Char Data...\n";
     fout.open("Single_char_data.txt");
     fout << generateSingleChar(1000000);
@@ -104,7 +104,7 @@ void generateStrings(){
     fout.open("DNA_large_3.txt");
     fout << generateRandomDNA(1000000000) << endl;
     fout.close();
-*/
+
     cout
         << "Done!\n";
 

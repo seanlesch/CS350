@@ -2,7 +2,7 @@
 
 //worst-case time is O(nm).
 //d is the size of the alphabet to test.
-void rabinKarp(string * pattern, string * source, int q, int d){
+long rabinKarp(string * pattern, string * source, int q, int d){
     int pLength = pattern->length();
     int sLength = source->length();
     int p = 0; //hash value of pattern string.
@@ -30,7 +30,7 @@ void rabinKarp(string * pattern, string * source, int q, int d){
                     break;
             }
             if(j == pLength){//Pattern fully matched.
-                return;
+                return i;
             }
         }
         if(i < (sLength - pLength)){//Are we still in bounds? Then get next hash.
@@ -39,5 +39,6 @@ void rabinKarp(string * pattern, string * source, int q, int d){
                 s = s + q;
         }
     }
-    cout << endl;
+    
+    return -1;
 }

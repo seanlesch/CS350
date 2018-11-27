@@ -36,7 +36,7 @@ void kmp_prefix(string * pattern, int *& to_skip, int pattern_length) {
 
 //cycles through the text outputting to the screen all the indices of the
 //text string where the pattern begins if a full match occurs
-void kmp(string * pattern, string * text){
+long kmp(string * pattern, string * text){
     int * to_skip = NULL;//holds the number of indices to skip
     int text_length = text->length();
     int pattern_length = pattern->length();    
@@ -59,7 +59,7 @@ void kmp(string * pattern, string * text){
         
         //if the pattern has a match 
         if (pat_i == pattern_length) {
-            return;
+            return (text_i - pat_i);
         //pattern and text at their corresponding indices don't match
         } else if ((text_i < text_length) && (pattern->at(pat_i) != text->at(text_i))) { 
             //if the pattern index is greater than 0 it gets set to the previous
@@ -70,5 +70,5 @@ void kmp(string * pattern, string * text){
     }
     
     delete to_skip;
-    return;
+    return -1;
 }

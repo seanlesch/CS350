@@ -84,31 +84,34 @@ void TestRunner::testBinarySmallSet(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 2);
+  long locRK = rabinKarp(&pattern, &source, 101, 2);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
@@ -133,7 +136,7 @@ void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
   // Search using Brute-Force:
   cout << "brute\n";
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -142,7 +145,7 @@ void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
   // Search using Rabin-Karp:
   cout << "rk\n";
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 2);
+  long locRK = rabinKarp(&pattern, &source, 101, 2);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -150,7 +153,7 @@ void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
   // Search using KMP:
   cout << "kmp\n";
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -158,10 +161,13 @@ void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
   // Search using BoyerMoore:
   cout << "bm\n";
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testBinaryLargeSet(ofstream &resultsFile)
@@ -185,31 +191,34 @@ void TestRunner::testBinaryLargeSet(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 2);
+  long locRK = rabinKarp(&pattern, &source, 101, 2);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testBinaryConsecutive(ofstream &resultsFile)
@@ -233,31 +242,34 @@ void TestRunner::testBinaryConsecutive(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 2);
+  long locRK = rabinKarp(&pattern, &source, 101, 2);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testBinaryAlternating(ofstream &resultsFile)
@@ -281,31 +293,34 @@ void TestRunner::testBinaryAlternating(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 2);
+  long locRK = rabinKarp(&pattern, &source, 101, 2);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testCharSmallSet(ofstream &resultsFile)
@@ -329,31 +344,34 @@ void TestRunner::testCharSmallSet(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 64);
+  long locRK = rabinKarp(&pattern, &source, 101, 64);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testCharMediumSet(ofstream &resultsFile)
@@ -377,31 +395,34 @@ void TestRunner::testCharMediumSet(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 64);
+  long locRK = rabinKarp(&pattern, &source, 101, 64);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testCharLargeSet(ofstream &resultsFile)
@@ -425,31 +446,34 @@ void TestRunner::testCharLargeSet(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 64);
+  long locRK = rabinKarp(&pattern, &source, 101, 64);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testLargeBook(ofstream &resultsFile)
@@ -480,31 +504,34 @@ void TestRunner::testLargeBook(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 256);
+  long locRK = rabinKarp(&pattern, &source, 101, 256);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testSingleChar(ofstream &resultsFile)
@@ -527,29 +554,32 @@ void TestRunner::testSingleChar(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 2);
+  long locRK = rabinKarp(&pattern, &source, 101, 2);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testDNAMedium(ofstream &resultsFile)
@@ -572,31 +602,34 @@ void TestRunner::testDNAMedium(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 4);
+  long locRK = rabinKarp(&pattern, &source, 101, 4);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 
@@ -620,31 +653,34 @@ void TestRunner::testDNALarge(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 4);
+  long locRK = rabinKarp(&pattern, &source, 101, 4);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testDNALarge2(ofstream &resultsFile)
@@ -667,31 +703,34 @@ void TestRunner::testDNALarge2(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 4);
+  long locRK = rabinKarp(&pattern, &source, 101, 4);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }
 
 void TestRunner::testDNALarge3(ofstream &resultsFile)
@@ -714,29 +753,32 @@ void TestRunner::testDNALarge3(ofstream &resultsFile)
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
-  brute(&pattern, &source);
+  long locBrute = brute(&pattern, &source);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using Rabin-Karp:
   start = std::chrono::high_resolution_clock::now();
-  rabinKarp(&pattern, &source, 101, 4);
+  long locRK = rabinKarp(&pattern, &source, 101, 4);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using KMP:
   start = std::chrono::high_resolution_clock::now();
-  kmp(&pattern, &source);
+  long locKMP = kmp(&pattern, &source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
 
   // Search using BoyerMoore:
   start = std::chrono::high_resolution_clock::now();
-  boyerMoore(&source, &pattern);
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
+  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
 }

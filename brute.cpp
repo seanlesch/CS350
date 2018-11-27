@@ -1,6 +1,6 @@
 #include "Algorithms.h"
 //Worst case O(m*(n-m+1))
-void brute(string * pattern, string * text) {
+long brute(string * pattern, string * text) {
     int text_i = 0;
     int pat_i = 0;
     int text_len = text->length();
@@ -10,10 +10,10 @@ void brute(string * pattern, string * text) {
         while (text->at(text_i + pat_i) == pattern->at(pat_i)) {
             ++pat_i;
             if(pat_i == pat_len-1){
-                return;
+                return text_i;
             }
         }
         pat_i = 0;
     }
-    return;
+    return -1;
 }
