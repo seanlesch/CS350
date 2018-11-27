@@ -27,9 +27,6 @@ class TestRunner
     void testSingle1mil(ofstream &resultsFile);
     void testSingle10mil(ofstream &resultsFile);
     void testSingle100mil(ofstream &resultsFile);
-    void testSingle1milFound(ofstream &resultsFile);
-    void testSingle10milFound(ofstream &resultsFile);
-    void testSingle100milFound(ofstream &resultsFile);
 
     void testDNA1mil(ofstream &resultsFile);
     void testDNA10mil(ofstream &resultsFile);
