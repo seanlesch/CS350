@@ -124,7 +124,6 @@ void TestRunner::testBinary100mil(ofstream &resultsFile)
   resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
-<<<<<<< Updated upstream
 void TestRunner::testBinary100milFound(ofstream &resultsFile)
 {
   // Define Pattern:
@@ -181,8 +180,6 @@ void TestRunner::testBinary100milFound(ofstream &resultsFile)
   resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
-=======
->>>>>>> Stashed changes
 void TestRunner::testBinary1mil(ofstream &resultsFile)
 {
   // Define Pattern:
