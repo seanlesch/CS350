@@ -15,49 +15,59 @@ void TestRunner::RunTests()
 
   resultsFile << "Test Case | Brute-Force | Rabin-Karp | Knuth-Morris-Pratt | Boyer-Moore\n";
   cout << "Testing Binary Data:\n";
-  testBinaryMediumSet(resultsFile);
+  testBinary10k(resultsFile);
   resultsFile.flush();
-  cout << "Medium test complete.\n";
-  testBinaryLargeSet(resultsFile);
-  resultsFile.flush();
-  cout << "Large test complete.\n";
 
-  testBinaryAlternating(resultsFile);
+  testBinary100k(resultsFile);
   resultsFile.flush();
-  cout << "Alternating test complete.\n";
-  testBinaryConsecutive(resultsFile);
-  resultsFile.flush();
-  cout << "Consecutive test complete.\n";
 
-  cout << "Test Random Character Data:\n";
-  testCharMediumSet(resultsFile);
+  testBinary1mil(resultsFile);
   resultsFile.flush();
-  cout << "Medium test complete.\n";
-  testCharLargeSet(resultsFile);
+  
+  testBinary10mil(resultsFile);
   resultsFile.flush();
-  cout << "Large test complete.\n";
 
-  cout << "Testing Spoken English\n";
-  testLargeBook(resultsFile);
+  cout << "Testing Random Character Data:\n";
+  testAlphanum10k(resultsFile);
+  resultsFile.flush();
+  
+  testAlphanum100k(resultsFile);
+  resultsFile.flush();
 
-  cout << "Testing single character\n";
-  testSingleChar(resultsFile);
+  testAlphanum1mil(resultsFile);
+  resultsFile.flush();
+
+  testAlphanum10mil(resultsFile);
+  resultsFile.flush();
+
+  cout << "Testing single character data\n";
+  testSingle10k(resultsFile);
+  resultsFile.flush();
+
+    testSingle100k(resultsFile);
+  resultsFile.flush();
+
+    testSingle1mil(resultsFile);
+  resultsFile.flush();
+
+    testSingle10mil(resultsFile);
   resultsFile.flush();
 
   cout << "Testing DNA Data:\n";
-  testDNAMedium(resultsFile);
+  testDNA10k(resultsFile);
   resultsFile.flush();
-  cout << "Medium test complete.\n";
-  testDNALarge(resultsFile);
-  resultsFile.flush();
-  cout << "Large test 1 complete.\n";
-  testDNALarge2(resultsFile);
-  resultsFile.flush();
-  cout << "Large test 2 complete.\n";
-  testDNALarge3(resultsFile);
-  resultsFile.flush();
-  cout << "Large test 3 complete.\n";
   
+  testDNA100k(resultsFile);
+  resultsFile.flush();
+
+    testDNA1mil(resultsFile);
+  resultsFile.flush();
+  testDNA10mil(resultsFile);
+  resultsFile.flush();
+ 
+
+    cout << "Testing Spoken English\n";
+  testLargeBook(resultsFile);
   resultsFile.close();
 
   cout << "All tests completed.\n";
