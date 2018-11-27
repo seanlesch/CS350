@@ -17,6 +17,6 @@ void brute(string * pattern, string * text) {
         }
         pat_i = 0;
     }
-    cout << count;
+    
     return;
 }
