@@ -30,7 +30,7 @@ void rabinKarp(string * pattern, string * source, int q, int d){
                     break;
             }
             if(j == pLength){//Pattern fully matched.
-                
+                return;
             }
         }
         if(i < (sLength - pLength)){//Are we still in bounds? Then get next hash.

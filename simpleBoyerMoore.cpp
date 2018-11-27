@@ -82,8 +82,10 @@ void boyerMoore(string *text, string *pat)
 		/* If the pattern is present at current shift, then index j 
 			will become -1 after the above loop */
 		if (j<0) 
-		{ 
-			s += shift[0]; 
+		{
+            return;
+            s += shift[0]; 
+            
 		} 
 		else
 			/*pat[i] != pat[s+j] so shift the pattern 
