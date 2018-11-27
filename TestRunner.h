@@ -9,38 +9,9 @@
 
 class TestRunner
 {
-  private:
-    void testBinary1mil(ofstream &resultsFile);
-    void testBinary10mil(ofstream &resultsFile);
-    void testBinary100mil(ofstream &resultsFile);
-    void testBinary1milFound(ofstream &resultsFile);
-    void testBinary10milFound(ofstream &resultsFile);
-    void testBinary100milFound(ofstream &resultsFile);
-
-    void testAlphanum1mil(ofstream &resultsFile);
-    void testAlphanum10mil(ofstream &resultsFile);
-    void testAlphanum100mil(ofstream &resultsFile);
-    void testAlphanum1milFound(ofstream &resultsFile);
-    void testAlphanum10milFound(ofstream &resultsFile);
-    void testAlphanum100milFound(ofstream &resultsFile);
-
-    void testSingle1mil(ofstream &resultsFile);
-    void testSingle10mil(ofstream &resultsFile);
-    void testSingle100mil(ofstream &resultsFile);
-
-    void testDNA1mil(ofstream &resultsFile);
-    void testDNA10mil(ofstream &resultsFile);
-    void testDNA100mil(ofstream &resultsFile);
-    void testDNA1milFound(ofstream &resultsFile);
-    void testDNA10milFound(ofstream &resultsFile);
-    void testDNA100milFound(ofstream &resultsFile);
-
-    void testLargeBook(ofstream &resultsFile);
-    void testBinaryAlternating(ofstream &resultsFile);
-    void testBinaryConsecutive(ofstream &resultsFile);
-
   public:
     void RunTests();
+    void RunTestCase(ofstream &resultsFile, string sourceFile, string pattern);
 };
 
 #endif
