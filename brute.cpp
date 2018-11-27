@@ -6,7 +6,6 @@ void brute(string * pattern, string * text) {
     int text_len = text->length();
     int pat_len = pattern->length();
     int stop_i = text_len - pat_len;
-<<<<<<< HEAD
 
     for(text_i;text_i < stop_i; ++text_i){
         while (text->at(text_i + pat_i) == pattern->at(pat_i)) {
@@ -19,14 +18,5 @@ void brute(string * pattern, string * text) {
         pat_i = 0;
     }
     
-=======
-  
-    for(text_i;text_i < stop_i; ++text_i){
-        while (text->at(text_i + pat_i) == pattern->at(pat_i)) {
-            ++pat_i;
-        }
-        pat_i = 0;
-    }
->>>>>>> changed for loop
     return;
 }

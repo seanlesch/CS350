@@ -50,7 +50,7 @@ void kmp(string * pattern, string * text){
 
     //cycles through the text comparing to the pattern, storing the 
     //indices of the text where the pattern began 
-    while (text_i < text_length) { 
+    while (text_i < text_length - ) { 
         
         if (pattern->at(pat_i) == text->at(text_i)) { 
             ++pat_i; 
@@ -60,6 +60,7 @@ void kmp(string * pattern, string * text){
         //if the pattern has a match 
         if (pat_i == pattern_length) {
             pat_i = to_skip[pat_i - 1];
+            return;
         //pattern and text at their corresponding indices don't match
         } else if ((text_i < text_length) && (pattern->at(pat_i) != text->at(text_i))) { 
             //if the pattern index is greater than 0 it gets set to the previous
