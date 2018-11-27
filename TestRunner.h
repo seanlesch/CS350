@@ -10,18 +10,27 @@
 class TestRunner
 {
   private:
-    void testBinarySmallSet(ofstream &resultsFile);
-    void testBinaryMediumSet(ofstream &resultsFile);
-    void testBinaryLargeSet(ofstream &resultsFile);
-    void testCharSmallSet(ofstream &resultsFile);
-    void testCharMediumSet(ofstream &resultsFile);
-    void testCharLargeSet(ofstream &resultsFile);
+    void testBinary10k(ofstream &resultsFile);
+    void testBinary100k(ofstream &resultsFile);
+    void testBinary1mil(ofstream &resultsFile);
+    void testBinary10mil(ofstream &resultsFile);
+
+    void testAlphanum10k(ofstream &resultsFile);
+    void testAlphanum100k(ofstream &resultsFile);
+    void testAlphanum1mil(ofstream &resultsFile);
+    void testAlphanum10mil(ofstream &resultsFile);
+
+    void testSingle10k(ofstream &resultsFile);
+    void testSingle100k(ofstream &resultsFile);
+    void testSingle1mil(ofstream &resultsFile);
+    void testSingle10mil(ofstream &resultsFile);
+
+    void testDNA10k(ofstream &resultsFile);
+    void testDNA100k(ofstream &resultsFile);
+    void testDNA1mil(ofstream &resultsFile);
+    void testDNA10mil(ofstream &resultsFile);
+
     void testLargeBook(ofstream &resultsFile);
-    void testSingleChar(ofstream &resultsFile);
-    void testDNAMedium(ofstream &resultsFile);
-    void testDNALarge(ofstream &resultsFile);
-    void testDNALarge2(ofstream &resultsFile);
-    void testDNALarge3(ofstream &resultsFile);
     void testBinaryAlternating(ofstream &resultsFile);
     void testBinaryConsecutive(ofstream &resultsFile);
 
