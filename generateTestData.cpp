@@ -35,7 +35,6 @@ string generateBinaryConsecutive(const int len){
 
 string generateSingleChar(const int len){
     string s = string(len, '0');
-    s += "1";
     return s;
 }
 
@@ -67,56 +66,77 @@ string generateRandomBinary(const int len){
 void generateStrings(){
     ofstream fout;
 
-    fout.open("binary_alternating_data.txt");
+    /*fout.open("binary_alternating_data.txt");
     fout << generateBinaryAlternating(1000000);
     fout.close();
     fout.open("binary_consecutive_data.txt");
     fout << generateBinaryConsecutive(1000000);
+    fout.close();*/
+    fout.open("binary_data_10k.txt");
+    fout << generateRandomBinary(10000);
     fout.close();
-    /* fout.open("binary_data_small.txt");
-    fout << generateRandomBinary(1000);
+    fout.open("binary_data_100k.txt");
+    fout << generateRandomBinary(100000);
     fout.close();
-    fout.open("binary_data_medium.txt");
+    fout.open("binary_data_1mil.txt");
     fout << generateRandomBinary(1000000);
     fout.close();
-    fout.open("binary_data_large.txt");
-    fout << generateRandomBinary(1000000000);
-    fout.close();
-*/
-    cout << "Generating Single Char Data...\n";
-    fout.open("Single_char_data.txt");
-    fout << generateSingleChar(1000000);
+    fout.open("binary_data_10mil.txt");
+    fout << generateRandomBinary(10000000);
     fout.close();
 
+  /*  cout << "Generating Single Char Data...\n";
+    fout.open("Single_char_data.txt");
+    fout << generateSingleChar(1000000);
+    fout.close();*/
+
     cout << "Generating DNA Data...";
-    fout.open("DNA_medium.txt");
+    fout.open("DNA_10k.txt");
+    fout << generateRandomDNA(10000) << endl;
+    fout.close();
+    cout << "...";
+    fout.open("DNA_100k.txt");
+    fout << generateRandomDNA(100000) << endl;
+    fout.close();
+    fout.open("DNA_1mil.txt");
     fout << generateRandomDNA(1000000) << endl;
     fout.close();
     cout << "...";
-    fout.open("DNA_large.txt");
-    fout << generateRandomDNA(1000000000) << endl;
+    fout.open("DNA_10mil.txt");
+    fout << generateRandomDNA(10000000) << endl;
     fout.close();
     cout << "...";
-    fout.open("DNA_large_2.txt");
-    fout << generateRandomDNA(1000000000) << endl;
+
+    cout << "Generating WORST CASE Data...";
+    fout.open("Single_10k.txt");
+    fout << generateSingleChar(10000) << endl;
     fout.close();
     cout << "...";
-    fout.open("DNA_large_3.txt");
-    fout << generateRandomDNA(1000000000) << endl;
+    fout.open("Single_100k.txt");
+    fout << generateSingleChar(100000) << endl;
     fout.close();
-
-    cout
-        << "Done!\n";
-
-    /*  fout.open("random_data_small.txt");
-    fout << generateRandomChars(1000);
+    fout.open("Single_1mil.txt");
+    fout << generateSingleChar(1000000) << endl;
     fout.close();
-    fout.open("random_data_medium.txt");
+    cout << "...";
+    fout.open("Single_10mil.txt");
+    fout << generateSingleChar(10000000) << endl;
+    fout.close();
+    cout << "...";
+    cout << "Done!\n";
+
+    fout.open("Alphanum_10k.txt");
+    fout << generateRandomChars(10000);
+    fout.close();
+    fout.open("Alphanum_100k.txt");
+    fout << generateRandomChars(100000);
+    fout.close();
+    fout.open("Alphanum_1mil.txt");
     fout << generateRandomChars(1000000);
     fout.close();
-    fout.open("random_data_large.txt");
-    fout << generateRandomChars(1000000000);
+    fout.open("Alphanum_10mil.txt");
+    fout << generateRandomChars(10000000);
     fout.close();
-    cout << "Done!\n";*/
+    cout << "Done!\n";
 }
 
