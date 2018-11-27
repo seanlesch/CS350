@@ -1198,6 +1198,56 @@ void TestRunner::testDNA1milFound(ofstream &resultsFile)
   resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
+void TestRunner::testDNA10mil(ofstream &resultsFile)
+{
+  // Define Pattern:
+  string pattern = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+  string source;
+
+  // Open file to be searched.
+  ifstream f_in;
+  f_in.open("DNA_10mil.txt");
+  if (f_in.is_open())
+  {
+    f_in >> source;
+    f_in.ignore(1000, '\n');
+  }
+  f_in.close();
+
+  resultsFile << "DNA 10mil, ";
+
+  // Search using Brute-Force:
+  auto start = std::chrono::high_resolution_clock::now();
+  long locBrute = brute(&pattern, &source);
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using Rabin-Karp:
+  start = std::chrono::high_resolution_clock::now();
+  long locRK = rabinKarp(&pattern, &source, 101, 4);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using KMP:
+  start = std::chrono::high_resolution_clock::now();
+  long locKMP = kmp(&pattern, &source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+
+  // Search using BoyerMoore:
+  start = std::chrono::high_resolution_clock::now();
+  //boyerMoore(&source, &pattern);
+  BoyerMoore *bm = new BoyerMoore(&pattern);
+  long locBM = bm->FindFirst(&source);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << " \n";
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
+}
+
 void TestRunner::testDNA10milFound(ofstream &resultsFile)
 {
   // Define Pattern:
@@ -1247,5 +1297,6 @@ void TestRunner::testDNA10milFound(ofstream &resultsFile)
   resultsFile << duration << " \n";
   resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
+
 
 
