@@ -14,53 +14,65 @@ void TestRunner::RunTests()
   resultsFile.open("results.txt", ofstream::out);
 
   resultsFile << "Test Case | Brute-Force | Rabin-Karp | Knuth-Morris-Pratt | Boyer-Moore\n";
+
   cout << "Testing Binary Data:\n";
-
-
-  testBinary100mil(resultsFile);
-  resultsFile.flush();
 
   testBinary1mil(resultsFile);
   resultsFile.flush();
-  
   testBinary10mil(resultsFile);
+  resultsFile.flush();
+  testBinary100mil(resultsFile);
+  resultsFile.flush();
+
+  testBinary1milFound(resultsFile);
+  resultsFile.flush();
+  testBinary10milFound(resultsFile);
+  resultsFile.flush();
+  testBinary100milFound(resultsFile);
   resultsFile.flush();
 
   cout << "Testing Random Character Data:\n";
 
-  
+  testAlphanum1mil(resultsFile);
+  resultsFile.flush();
+  testAlphanum10mil(resultsFile);
+  resultsFile.flush();
   testAlphanum100mil(resultsFile);
   resultsFile.flush();
 
-  testAlphanum1mil(resultsFile);
+  testAlphanum1milFound(resultsFile);
   resultsFile.flush();
-
-  testAlphanum10mil(resultsFile);
+  testAlphanum10milFound(resultsFile);
+  resultsFile.flush();
+  testAlphanum100milFound(resultsFile);
   resultsFile.flush();
 
   cout << "Testing single character data\n";
 
-    testSingle100mil(resultsFile);
+  testSingle1mil(resultsFile);
   resultsFile.flush();
-
-    testSingle1mil(resultsFile);
+  testSingle10mil(resultsFile);
   resultsFile.flush();
-
-    testSingle10mil(resultsFile);
+  testSingle100mil(resultsFile);
   resultsFile.flush();
 
   cout << "Testing DNA Data:\n";
   
-  testDNA100mil(resultsFile);
-  resultsFile.flush();
-
-    testDNA1mil(resultsFile);
+  testDNA1mil(resultsFile);
   resultsFile.flush();
   testDNA10mil(resultsFile);
   resultsFile.flush();
- 
+  testDNA100mil(resultsFile);
+  resultsFile.flush();
 
-    cout << "Testing Spoken English\n";
+  testDNA1milFound(resultsFile);
+  resultsFile.flush();
+  testDNA10milFound(resultsFile);
+  resultsFile.flush();
+  testDNA100milFound(resultsFile);
+  resultsFile.flush();
+
+  cout << "Testing Spoken English\n";
   testLargeBook(resultsFile);
   resultsFile.close();
 
