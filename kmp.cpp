@@ -59,13 +59,12 @@ void kmp(string * pattern, string * text){
         
         //if the pattern has a match 
         if (pat_i == pattern_length) {
-            text_i = text_i - pat_i +1;
-            pat_i = 0;
+            pat_i = to_skip[pat_i - 1];
         //pattern and text at their corresponding indices don't match
         } else if ((text_i < text_length) && (pattern->at(pat_i) != text->at(text_i))) { 
             //if the pattern index is greater than 0 it gets set to the previous
             //index in the to_skip array, preventing repeat compares
-            if (pat_i > 0) pat_i = to_skip[pat_i - 1]; 
+            if (pat_i != 0) pat_i = to_skip[pat_i - 1]; 
             else ++text_i; 
         } 
     }
