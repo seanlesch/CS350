@@ -80,7 +80,7 @@ void TestRunner::testBinarySmallSet(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "Binary Small Set: ";
+  resultsFile << "Binary Small Set, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -111,7 +111,7 @@ void TestRunner::testBinarySmallSet(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
@@ -131,7 +131,7 @@ void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "Binary Medium Set: ";
+  resultsFile << "Binary Medium Set, ";
 
   // Search using Brute-Force:
   cout << "brute\n";
@@ -167,13 +167,13 @@ void TestRunner::testBinaryMediumSet(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testBinaryLargeSet(ofstream &resultsFile)
 {
   // Define Pattern:
-  string pattern = "100110010101011101001101101";
+  string pattern = "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
   string source;
   long offset = -1;
 
@@ -187,7 +187,7 @@ void TestRunner::testBinaryLargeSet(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "Binary Large Set: ";
+  resultsFile << "Binary Large Set, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -218,7 +218,7 @@ void TestRunner::testBinaryLargeSet(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testBinaryConsecutive(ofstream &resultsFile)
@@ -238,7 +238,7 @@ void TestRunner::testBinaryConsecutive(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "Binary Consecutive Set: ";
+  resultsFile << "Binary Consecutive Set, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -269,7 +269,7 @@ void TestRunner::testBinaryConsecutive(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testBinaryAlternating(ofstream &resultsFile)
@@ -289,7 +289,7 @@ void TestRunner::testBinaryAlternating(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "Binary Alternating Set: ";
+  resultsFile << "Binary Alternating Set, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -320,7 +320,7 @@ void TestRunner::testBinaryAlternating(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testCharSmallSet(ofstream &resultsFile)
@@ -340,7 +340,7 @@ void TestRunner::testCharSmallSet(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "Random Small Set: ";
+  resultsFile << "Random Small Set, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -371,7 +371,7 @@ void TestRunner::testCharSmallSet(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testCharMediumSet(ofstream &resultsFile)
@@ -391,7 +391,7 @@ void TestRunner::testCharMediumSet(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "Random Medium Set: ";
+  resultsFile << "Random Medium Set, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -422,7 +422,7 @@ void TestRunner::testCharMediumSet(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testCharLargeSet(ofstream &resultsFile)
@@ -442,7 +442,7 @@ void TestRunner::testCharLargeSet(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "Random Large Set: ";
+  resultsFile << "Random Large Set, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -473,7 +473,7 @@ void TestRunner::testCharLargeSet(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testLargeBook(ofstream &resultsFile)
@@ -500,7 +500,7 @@ void TestRunner::testLargeBook(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "Large Book Set: ";
+  resultsFile << "Large Book Set, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -531,7 +531,7 @@ void TestRunner::testLargeBook(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testSingleChar(ofstream &resultsFile)
@@ -550,7 +550,7 @@ void TestRunner::testSingleChar(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "Single Char: ";
+  resultsFile << "Single Char, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -579,7 +579,7 @@ void TestRunner::testSingleChar(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testDNAMedium(ofstream &resultsFile)
@@ -598,7 +598,7 @@ void TestRunner::testDNAMedium(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "DNA Medium: ";
+  resultsFile << "DNA Medium, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -629,7 +629,7 @@ void TestRunner::testDNAMedium(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 
@@ -649,7 +649,7 @@ void TestRunner::testDNALarge(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "DNA Large 1: ";
+  resultsFile << "DNA Large 1, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -680,7 +680,7 @@ void TestRunner::testDNALarge(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testDNALarge2(ofstream &resultsFile)
@@ -699,7 +699,7 @@ void TestRunner::testDNALarge2(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "DNA Large 2: ";
+  resultsFile << "DNA Large 2, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -730,7 +730,7 @@ void TestRunner::testDNALarge2(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
 
 void TestRunner::testDNALarge3(ofstream &resultsFile)
@@ -749,7 +749,7 @@ void TestRunner::testDNALarge3(ofstream &resultsFile)
   }
   f_in.close();
 
-  resultsFile << "DNA Large 3: ";
+  resultsFile << "DNA Large 3, ";
 
   // Search using Brute-Force:
   auto start = std::chrono::high_resolution_clock::now();
@@ -780,5 +780,5 @@ void TestRunner::testDNALarge3(ofstream &resultsFile)
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
-  resultsFile << "Found at: Brute=" << locBrute << ", RKarp=" << locRK << ", KMP=" << locKMP << ", BMoore=" << locBM << endl;
+  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
 }
