@@ -11,7 +11,7 @@ class TestRunner
 {
   public:
     void RunTests();
-    void RunTestCase(ofstream &resultsFile, string sourceFile, string pattern);
+    void RunTestCase(ofstream &resultsFile, string sourceFile, string pattern, int iterations);
 };
 
 #endif
