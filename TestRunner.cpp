@@ -139,18 +139,34 @@ void TestRunner::RunTestCase(ofstream &resultsFile, string sourceFile, string pa
 {
   // Define Pattern:
   string sourceText;
-
   // Open file to be searched.
   cout << "Opening source file - " << sourceFile << " - ";
   ifstream f_in;
-  f_in.open(sourceFile);
-  if (f_in.is_open())
-  {
-    f_in >> sourceText;
-    f_in.ignore(1000, '\n');
-    cout << "Reading source text - ";
-  }
+  //We have to change the file read in for this one case to
+  //handle spaces.
+  if(sourceFile == "birds_of_guernsey.txt"){
+    f_in.open(sourceFile);
+    if (f_in.is_open())
+    {
+      char ch;
+      cout << "Reading source text - ";
+      while(!f_in.eof())
+      {
+        f_in.get(ch);
+        sourceText += ch;
+      };    
+    }
   f_in.close();
+  }else{
+    f_in.open(sourceFile);
+    if (f_in.is_open())
+    {
+      f_in >> sourceText;
+      f_in.ignore(1000, '\n');
+      cout << "Reading source text - ";
+    }
+    f_in.close();
+  }
   cout << "done.\n";
 
   resultsFile << sourceFile << ", ";
@@ -164,14 +180,48 @@ void TestRunner::RunTestCase(ofstream &resultsFile, string sourceFile, string pa
   resultsFile << duration << ", ";
   cout << "done.\n";
 
+  long locRK = 0;
   // Search using Rabin-Karp:
+  if(sourceFile[0]=='A'){
   cout << "Running Rabin-Karp - ";
   start = std::chrono::high_resolution_clock::now();
-  long locRK = rabinKarp(&pattern, &sourceText, 101, 2);
+  locRK = rabinKarp(&pattern, &sourceText, 1059749, 62);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
   cout << "done.\n";
+  }
+  if(sourceFile[2]=='n' || sourceFile[0]=='S'){
+  cout << "Running Rabin-Karp - ";
+  start = std::chrono::high_resolution_clock::now();
+  locRK = rabinKarp(&pattern, &sourceText, 1059749, 2);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+  cout << "done.\n";
+  }
+
+  if(sourceFile[0]=='D'){
+  cout << "Running Rabin-Karp - ";
+  start = std::chrono::high_resolution_clock::now();
+  locRK = rabinKarp(&pattern, &sourceText, 1059749, 4);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+  cout << "done.\n";
+  }
+
+  if(sourceFile == "birds_of_guernsey.txt"){
+  cout << "Running Rabin-Karp - ";
+  start = std::chrono::high_resolution_clock::now();
+  locRK = rabinKarp(&pattern, &sourceText, 1059749, 256);
+  stop = std::chrono::high_resolution_clock::now();
+  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+  resultsFile << duration << ", ";
+  cout << "done.\n";
+  }
+  
+  
 
   // Search using KMP:
   cout << "Running Knuth-Morris-Pratt - ";
