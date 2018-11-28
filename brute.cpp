@@ -6,7 +6,7 @@ long* brute(string * pattern, string * text) {
     int text_len = text->length();
     int pat_len = pattern->length();
     int stop_i = text_len - pat_len;
-    int count = 0;
+    long count = 0;
     static long r[1];
     for(text_i;text_i < stop_i; ++text_i){
         ++count;

@@ -8,7 +8,7 @@ long * rabinKarp(string * pattern, string * source, int q, int d){
     int p = 0; //hash value of pattern string.
     int s = 0; //hash value of source string.
     int h = 1; //d^(s-1)
-    int count = 0;
+    long count = 0;
     static long r[1];
 
     //Computing hash of h.

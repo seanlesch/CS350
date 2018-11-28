@@ -39,7 +39,7 @@ long* kmp(string * pattern, string * text){
     int pat_i = 0;
     int text_i = 0;
     int start_i = 0;
-    int count = 0;
+    long count = 0;
     static long r[1];
 
     //creates the prefix/suffix match array determining how many 
