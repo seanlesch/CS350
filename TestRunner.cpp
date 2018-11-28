@@ -186,7 +186,7 @@ void TestRunner::RunTestCase(ofstream &resultsFile, string sourceFile, string pa
   {
     cout << "Running Rabin-Karp - ";
     start = std::chrono::high_resolution_clock::now();
-    locRK = rabinKarp(&pattern, &sourceText, 1059749, 62);
+    locRK = rabinKarp(&pattern, &sourceText, 179424673, 62);
     stop = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
     resultsFile << duration << ", ";
@@ -196,7 +196,7 @@ void TestRunner::RunTestCase(ofstream &resultsFile, string sourceFile, string pa
   {
     cout << "Running Rabin-Karp - ";
     start = std::chrono::high_resolution_clock::now();
-    locRK = rabinKarp(&pattern, &sourceText, 1059749, 2);
+    locRK = rabinKarp(&pattern, &sourceText, 179424673, 2);
     stop = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
     resultsFile << duration << ", ";
@@ -207,7 +207,7 @@ void TestRunner::RunTestCase(ofstream &resultsFile, string sourceFile, string pa
   {
     cout << "Running Rabin-Karp - ";
     start = std::chrono::high_resolution_clock::now();
-    locRK = rabinKarp(&pattern, &sourceText, 1059749, 4);
+    locRK = rabinKarp(&pattern, &sourceText, 179424673, 4);
     stop = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
     resultsFile << duration << ", ";
@@ -218,7 +218,7 @@ void TestRunner::RunTestCase(ofstream &resultsFile, string sourceFile, string pa
   {
     cout << "Running Rabin-Karp - ";
     start = std::chrono::high_resolution_clock::now();
-    locRK = rabinKarp(&pattern, &sourceText, 1059749, 256);
+    locRK = rabinKarp(&pattern, &sourceText, 179424673, 256);
     stop = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
     resultsFile << duration << ", ";
