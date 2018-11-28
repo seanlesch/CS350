@@ -3,10 +3,9 @@
 
 int main()
 {
-     //generateStrings();
-     TestRunner tr;
-     tr.RunTests();
+  //generateStrings();
+  TestRunner tr;
+  tr.RunTests();
 
-     
-     return 0;
+  return 0;
 }

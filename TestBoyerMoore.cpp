@@ -3,7 +3,7 @@
 
 void TestBoyerMoore::RunTests()
 {
-  long result = 0;
+  long * result;
 
   string pattern = "GCAGAGAG";
   string text = "GAGATAGATCTCGTAGAGCTTGAGATAGATCTCCTAGAGCTT";
@@ -29,7 +29,7 @@ void TestBoyerMoore::RunTests()
   ConfirmGoodSuffix(bm, 8, 7);
 
   result = bm->FindFirst(&text);
-  cout << "Result: " << result << endl;
+  cout << "Result: " << result[0] << " Comparisons: " << result[1] << endl;
   delete bm;
 
   pattern = "abbabab";
@@ -55,7 +55,7 @@ void TestBoyerMoore::RunTests()
   ConfirmGoodSuffix(bm, 8, 6);
 
   result = bm->FindFirst(&text);
-  cout << "Result: " << result << endl;
+  cout << "Result: " << result[0] << " Comparisons: " << result[1] << endl;
   delete bm;
 
   pattern = "ANPANMAN";
@@ -81,7 +81,7 @@ void TestBoyerMoore::RunTests()
   ConfirmGoodSuffix(bm, 8, 6);
 
   result = bm->FindFirst(&text);
-  cout << "Result: " << result << endl;
+  cout << "Result: " << result[0] << " Comparisons: " << result[1] << endl;
   delete bm;
 
   pattern = "babac";
@@ -103,7 +103,7 @@ void TestBoyerMoore::RunTests()
   ConfirmGoodSuffix(bm, 5, 5);
 
   result = bm->FindFirst(&text);
-  cout << "Result: " << result << endl;
+  cout << "Result: " << result[0] << " Comparisons: " << result[1] << endl;
   delete bm;
 
   pattern = "BARBER";
@@ -129,7 +129,7 @@ void TestBoyerMoore::RunTests()
   ConfirmGoodSuffix(bm, 6, 6);
 
   result = bm->FindFirst(&text);
-  cout << "Result: " << result << endl;
+  cout << "Result: " << result[0] << " Comparisons: " << result[1] << endl;
   delete bm;
 
   pattern = "ABCBAB";
@@ -155,7 +155,7 @@ void TestBoyerMoore::RunTests()
   ConfirmGoodSuffix(bm, 6, 4);
 
   result = bm->FindFirst(&text);
-  cout << "Result: " << result << endl;
+  cout << "Result: " << result[0] << " Comparisons: " << result[1] << endl;
   delete bm;
 
   pattern = "BAOBAB";
@@ -181,7 +181,7 @@ void TestBoyerMoore::RunTests()
   ConfirmGoodSuffix(bm, 6, 5);
 
   result = bm->FindFirst(&text);
-  cout << "Result: " << result << endl;
+  cout << "Result: " << result[0] << " Comparisons: " << result[1] << endl;
   delete bm;
 
   pattern = "TCCTAGAGCTT";
@@ -212,7 +212,7 @@ void TestBoyerMoore::RunTests()
   ConfirmGoodSuffix(bm, 11, 10);
 
   result = bm->FindFirst(&text);
-  cout << "Result: " << result << endl;
+  cout << "Result: " << result[0] << " Comparisons: " << result[1] << endl;
   delete bm;
 
   pattern = "TCCTAGAGCTT";
@@ -243,7 +243,7 @@ void TestBoyerMoore::RunTests()
   ConfirmGoodSuffix(bm, 11, 10);
 
   vector<long> vresult = bm->FindAll(&text);
-  cout << "Result: " << result << endl;
+  cout << "Result: " << result[0] << " Comparisons: " << result[1] << endl;
   delete bm;
 
   pattern = "TC";
@@ -274,7 +274,7 @@ void TestBoyerMoore::RunTests()
   ConfirmGoodSuffix(bm, 11, 10);
 
   vresult = bm->FindAll(&text);
-  cout << "Result: " << result << endl;
+  cout << "Result: " << result[0] << " Comparisons: " << result[1] << endl;
   delete bm;
 }
 
