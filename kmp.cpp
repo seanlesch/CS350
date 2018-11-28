@@ -4,7 +4,7 @@
 //preprocesses the pattern to search for, finding the longest proper 
 //prefix with a matching suffix populates an array with the number 
 //of indices to skip if a pattern/text mismatch occurs
-void kmp_prefix(char* pat,int* lps,int M ) 
+void kmp_prefix(string * pat,int *& lps,int M ) 
 { 
     // length of the previous longest prefix suffix 
     int len = 0; 
