@@ -33,7 +33,7 @@ BoyerMoore::~BoyerMoore()
 /// </summary>
 /// <param name="pSource">The source text</param>
 /// <returns>The start position of the found occurrence. -1 if not found.</returns>
-long BoyerMoore::Search(string *pSource)
+long * BoyerMoore::Search(string *pSource)
 {
   return Search(pSource, 0);
 }
@@ -44,9 +44,13 @@ long BoyerMoore::Search(string *pSource)
 /// <param name="pSource">The source text</param>
 /// <param name="offset">Offset into the source text to begin searching</param>
 /// <returns>The start position of the found occurrence. -1 if not found.</returns>
-long BoyerMoore::Search(string *pSource, int offset)
+long * BoyerMoore::Search(string *pSource, int offset)
 {
-  long result = -1;
+  static long result[1];
+  long count = 0;
+
+  result[0] = -1;
+  result[1] = 0;
 
   // Get the length of the pattern
   int patternLen = pattern->length();
@@ -59,18 +63,22 @@ long BoyerMoore::Search(string *pSource, int offset)
     int i = 0;
     while (j <= textLen - patternLen)
     {
-      for (i = patternLen - 1; i >= 0 && (pattern->at(i) == pSource->at(i + j)); --i);
+      for (i = patternLen - 1; i >= 0 && (pattern->at(i) == pSource->at(i + j)); --i, ++count);
       if (i < 0)
       {
-        return j;
-        j += goodSuffix[0];
+        result[1] = count;
+        result[0] = j;
+        return result;
+        //j += goodSuffix[0];
       }
       else
+      {
         j += max(goodSuffix[i], badMatch[pSource->at(i + j)] - patternLen + 1 + i);
+      }
     }
   }
 
-
+  result[1] = count;
   return result;
 }
 
@@ -208,7 +216,7 @@ int BoyerMoore::GetGoodSuffix(char offset)
 /// </summary>
 /// <param name="pSource">The source text</param>
 /// <returns>The start position of the found occurrence.</returns>
-long BoyerMoore::FindFirst(string *pSource)
+long * BoyerMoore::FindFirst(string *pSource)
 {
   return Search(pSource);
 }
@@ -228,7 +236,7 @@ vector<long> BoyerMoore::FindAll(string *pSource)
 
   do{
     last = offset;
-    offset = Search(pSource, offset);
+    //offset = Search(pSource, offset);
     if (offset != last)
     {
       result.push_back(offset);

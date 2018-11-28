@@ -22,9 +22,9 @@ class BoyerMoore
 public:
   BoyerMoore(string * pPattern);
   ~BoyerMoore();
-  long Search(string * pSource);
-  long Search(string * pSource, int offset);
-  long FindFirst(string * pSource);
+  long * Search(string * pSource);
+  long * Search(string * pSource, int offset);
+  long * FindFirst(string * pSource);
   vector<long> FindAll(string * pSource);
   int GetBadMatch(char letter);
   int GetGoodSuffix(char offset);

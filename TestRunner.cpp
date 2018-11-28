@@ -238,13 +238,14 @@ void TestRunner::RunTestCase(ofstream &resultsFile, string sourceFile, string pa
   cout << "Running Boyer-Moore - ";
   start = std::chrono::high_resolution_clock::now();
   BoyerMoore *bm = new BoyerMoore(&pattern);
-  long locBM = bm->FindFirst(&sourceText);
+  long *locBM = bm->FindFirst(&sourceText);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
   cout << "done.\n";
-  resultsFile << "Found at, " << locBrute[0] << ", " << locRK[0] << ", " << locKMP[0] << ", " << locBM << endl;
-  resultsFile << "Number of comparisons, "<< locBrute[1] << ", " << locRK[1] << ", " << locKMP[1] << ", " << locBM << endl;
-  cout << "Search result: " << locBrute[0] << ", " << locRK[0] << ", " << locKMP[0] << ", " << locBM << endl;
+  resultsFile << "Found at, " << locBrute[0] << ", " << locRK[0] << ", " << locKMP[0] << ", " << locBM[0] << endl;
+  resultsFile << "Number of comparisons, "<< locBrute[1] << ", " << locRK[1] << ", " << locKMP[1] << ", " << locBM[1] << endl;
+  cout << "Search result: " << locBrute[0] << ", " << locRK[0] << ", " << locKMP[0] << ", " << locBM[0] << endl;
+  cout << "Number of comparisons: " << locBrute[1] << ", " << locRK[1] << ", " << locKMP[1] << ", " << locBM[1] << endl;
 }
 
