@@ -32,6 +32,32 @@ void TestBoyerMoore::RunTests()
   cout << "Result: " << result << endl;
   delete bm;
 
+  pattern = "abbabab";
+  text = "GAGATAGATCTCGTAGAGCTTGAGATAabbababAGAGCTT";
+  cout << "Pattern: " << pattern << endl;
+  cout << "Text: " << text << endl;
+  bm = new BoyerMoore(&pattern);
+
+  ConfirmBadMatch(bm, 'A', 1);
+  ConfirmBadMatch(bm, 'B', 8);
+  ConfirmBadMatch(bm, 'M', 2);
+  ConfirmBadMatch(bm, 'N', 3);
+  ConfirmBadMatch(bm, 'P', 5);
+  ConfirmBadMatch(bm, 'Z', 8);
+
+  ConfirmGoodSuffix(bm, 1, 1);
+  ConfirmGoodSuffix(bm, 2, 8);
+  ConfirmGoodSuffix(bm, 3, 3);
+  ConfirmGoodSuffix(bm, 4, 6);
+  ConfirmGoodSuffix(bm, 5, 6);
+  ConfirmGoodSuffix(bm, 6, 6);
+  ConfirmGoodSuffix(bm, 7, 6);
+  ConfirmGoodSuffix(bm, 8, 6);
+
+  result = bm->FindFirst(&text);
+  cout << "Result: " << result << endl;
+  delete bm;
+
   pattern = "ANPANMAN";
   text = "GAGATAGATCTCGTAGAGCTTGAGATAGATCTCCTAGAGCTT";
   cout << "Pattern: " << pattern << endl;

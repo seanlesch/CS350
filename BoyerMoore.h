@@ -11,12 +11,14 @@
 
 class BoyerMoore 
 {
-  int * badMatchTable;
-  int * goodSuffixTable;
-  int * suffixTable;
+  int * badMatch;
+  int * goodSuffix;
+  int * suffix;
   string * pattern;
-  void generateBadMatchTable(string * pPattern);
-  void generateGoodSuffixTable(string * pPattern);
+  void generateBadMatchTable(string *pPattern);
+  void generateSuffixTable(string *pPattern);
+  void generateGoodSuffixTable(string *pPattern);
+
 public:
   BoyerMoore(string * pPattern);
   ~BoyerMoore();

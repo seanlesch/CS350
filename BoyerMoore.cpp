@@ -8,10 +8,13 @@ BoyerMoore::BoyerMoore(string * pPattern)
 {
   pattern = pPattern;
 
-  // Create BadMatchTable from pattern.
+  // Create bad match table from pattern.
   generateBadMatchTable(pPattern);
 
-  // Create GoodSuffixTable from pattern.
+  // Create suffix table from pattern.
+  generateSuffixTable(pPattern);
+
+  // Create good suffix table from pattern.
   generateGoodSuffixTable(pPattern);
 }
 
@@ -20,9 +23,9 @@ BoyerMoore::BoyerMoore(string * pPattern)
 /// </summary>
 BoyerMoore::~BoyerMoore()
 {
-  delete badMatchTable;
-  delete suffixTable;
-  delete goodSuffixTable;
+  delete badMatch;
+  delete suffix;
+  delete goodSuffix;
 }
 
 /// <summary>
@@ -43,113 +46,139 @@ long BoyerMoore::Search(string *pSource)
 /// <returns>The start position of the found occurrence. -1 if not found.</returns>
 long BoyerMoore::Search(string *pSource, int offset)
 {
+  long result = -1;
+
   // Get the length of the pattern
   int patternLen = pattern->length();
-  int n = pSource->length();
+  int textLen = pSource->length();
 
-  /* Searching */
-  int j = offset;
-  int i = 0;
-  while (j <= n - patternLen)
+  // Only search if the pattern is smaller than or equal to the size of the source text.
+  if (patternLen <= textLen)
   {
-    for (i = patternLen - 1; i >= 0 && (pattern->at(i) == pSource->at(i + j)); --i);
-    if (i < 0)
+    int j = offset;
+    int i = 0;
+    while (j <= textLen - patternLen)
     {
-      return j;
-      j += goodSuffixTable[0];
+      for (i = patternLen - 1; i >= 0 && (pattern->at(i) == pSource->at(i + j)); --i);
+      if (i < 0)
+      {
+        return j;
+        j += goodSuffix[0];
+      }
+      else
+        j += max(goodSuffix[i], badMatch[pSource->at(i + j)] - patternLen + 1 + i);
     }
-    else
-      j += max(goodSuffixTable[i], badMatchTable[pSource->at(i + j)] - patternLen + 1 + i);
   }
-  return -1;
+
+
+  return result;
 }
 
 /// <summary>
 /// Generate the bad match table. This is the 
 /// same table used also by Horspool's algorithm.
 /// </summary>
-/// <param name="pPattern">The search pattern</param>
 void BoyerMoore::generateBadMatchTable(string * pPattern)
 {
   // Get the length of the pattern
   int patternLen = pPattern->length();
 
   // Allocate and initialize the bad match table with the length of the pattern.
-  badMatchTable = new int[SIZE_CHAR];
+  badMatch = new int[SIZE_CHAR];
   for (int index = 0; index < SIZE_CHAR; index++)
   {
-    badMatchTable[index] = patternLen;
+    badMatch[index] = patternLen;
   }
 
   // Starting from the left update the bad match table with the offset
   // from the end of the string for each character in the pattern.
   for (int index = 0; index < (patternLen - 1); index++)
   {
-    badMatchTable[pPattern->at(index)] = (patternLen - 1) - index;
+    badMatch[pPattern->at(index)] = (patternLen - 1) - index;
   }
 }
 
 /// <summary>
+/// Generate the suffixes table.
+/// </summary>
+void BoyerMoore::generateSuffixTable(string * pPattern)
+{
+  // Get the length of the pattern
+  int patternLen = pPattern->length();
+
+  // Allocate and initialize the last entry of the suffix table.
+  suffix = new int[patternLen];
+  suffix[patternLen - 1] = patternLen;
+
+  int prevInner = 0;
+  int outer = patternLen - 1;
+  int inner = patternLen - 2;
+
+  // Scan through the pattern looking for instances of the suffix.
+  while (inner >= 0)
+  {
+    if ((inner > outer) && (suffix[inner + patternLen - 1 - prevInner] < (inner - outer)))
+    {
+      suffix[inner] = suffix[inner + patternLen - 1 - prevInner];
+    }
+    else
+    {
+      if (inner < outer)
+      {
+        outer = inner;
+      }
+      prevInner = inner;
+      while ((outer >= 0) && (pPattern->at(outer) == pPattern->at(outer + patternLen - 1 - prevInner)))
+      {
+        --outer;
+      }
+
+      suffix[inner] = prevInner - outer;
+    }
+
+    --inner;
+  }
+} 
+
+/// <summary>
 /// Generate the good suffix table.
 /// </summary>
-/// <param name="pPattern">The search pattern</param>
 void BoyerMoore::generateGoodSuffixTable(string * pPattern)
 {
   // Get the length of the pattern
   int patternLen = pPattern->length();
 
-  // Allocate and fill the suffix table.
-  suffixTable = new int[patternLen];
-
-  suffixTable[patternLen - 1] = patternLen;
-  int g = patternLen - 1;
-  int f = 0;
-  for (int i = patternLen - 2; i >= 0; --i)
-  {
-    if ((i > g) && (suffixTable[i + patternLen - 1 - f] < (i - g)))
-    {
-      suffixTable[i] = suffixTable[i + patternLen - 1 - f];
-    }
-    else
-    {
-      if (i < g)
-      {
-        g = i;
-      }
-      f = i;
-      while (g >= 0 && pPattern->at(g) == pPattern->at(g + patternLen - 1 - f))
-      {
-        --g;
-      }
-      suffixTable[i] = f - g;
-    }
-  }
-
   // Allocate and initialize the good suffix and border position tables.
-  goodSuffixTable = new int[patternLen];
-
-  for (int i = 0; i < patternLen; ++i)
+  goodSuffix = new int[patternLen];
+  for (int index = 0; index < patternLen; ++index)
   {
-    goodSuffixTable[i] = patternLen;
+    goodSuffix[index] = patternLen;
   }
-  int j = 0;
-  for (int i = patternLen - 1; i >= 0; --i)
+
+  int inner = 0;
+  int outer = patternLen - 1;
+  while (outer >= 0)
   {
-    if (suffixTable[i] == i + 1)
+    if (suffix[outer] == (outer + 1))
     {
-      for (; j < patternLen - 1 - i; ++j)
+      while (inner < patternLen - 1 - outer)
       {
-        if (goodSuffixTable[j] == patternLen)
+        if (goodSuffix[inner] == patternLen)
         {
-          goodSuffixTable[j] = patternLen - 1 - i;
+          goodSuffix[inner] = patternLen - 1 - outer;
         }
+
+        ++inner;
       }
     }
+    --outer;
   }
-  for (int i = 0; i <= patternLen - 2; ++i)
+
+  for (int index = 0; index <= patternLen - 2; ++index)
   {
-    goodSuffixTable[patternLen - 1 - suffixTable[i]] = patternLen - 1 - i;
+    goodSuffix[patternLen - 1 - suffix[index]] = patternLen - 1 - index;
   }
+
 }
 
 /// <summary>
@@ -159,7 +188,7 @@ void BoyerMoore::generateGoodSuffixTable(string * pPattern)
 /// <returns>The associated shift</returns>
 int BoyerMoore::GetBadMatch(char ch)
 {
-  return badMatchTable[ch];
+  return badMatch[ch];
 }
 
 /// <summary>
@@ -170,7 +199,7 @@ int BoyerMoore::GetBadMatch(char ch)
 int BoyerMoore::GetGoodSuffix(char offset)
 {
   int patternLen = pattern->length();
-  return goodSuffixTable[patternLen - offset];
+  return goodSuffix[patternLen - offset];
 }
 
 /// <summary>
