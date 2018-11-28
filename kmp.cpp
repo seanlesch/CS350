@@ -1,43 +1,34 @@
 #include "Algorithms.h"
 
-//called by the kmp function
-//preprocesses the pattern to search for, finding the longest proper 
-//prefix with a matching suffix populates an array with the number 
-//of indices to skip if a pattern/text mismatch occurs
-void kmp_prefix(string * pat,int *& lps,int M ) 
-{ 
-    // length of the previous longest prefix suffix 
-    int len = 0; 
-  
-    lps[0] = 0; // lps[0] is always 0 
-  
-    // the loop calculates lps[i] for i = 1 to M-1 
-    int i = 1; 
-    while (i < M) { 
-        if (pat[i] == pat[len]) { 
-            len++; 
-            lps[i] = len; 
-            i++; 
-        } 
-        else // (pat[i] != pat[len]) 
-        { 
-            // This is tricky. Consider the example. 
-            // AAACAAAA and i = 7. The idea is similar 
-            // to search step. 
-            if (len != 0) { 
-                len = lps[len - 1]; 
-  
-                // Also, note that we do not increment 
-                // i here 
-            } 
-            else // if (len == 0) 
-            { 
-                lps[i] = 0; 
-                i++; 
-            } 
-        } 
-    } 
-} 
+void kmp_prefix(string * pattern, int *& to_skip, int pattern_length) { 
+    int pre_suf_count = 0;//the number times the prefix and suffix match
+    int i_to_match = 1;//marks the index to begin matching with the prefix
+    
+    to_skip = new int[pattern_length];
+    to_skip[0] = 0;//first index is always 0 b/c it is the smallest prefix
+    
+    //creates the to_skip array
+    for (i_to_match; i_to_match < pattern_length; ++i_to_match) {
+
+        //increments the number of indices to skip for a text/pattern
+        // mismatch and stores it in the to_skip array
+        if (pattern->at(i_to_match) == pattern->at(pre_suf_count)) {
+            ++pre_suf_count;
+            to_skip[i_to_match] = pre_suf_count;
+        }
+        else {
+            //no prefix/suffix match but previous index was a match
+            if (pre_suf_count != 0) { 
+                pre_suf_count = to_skip[pre_suf_count-1];
+                --i_to_match;
+            }
+            //no prefix/suffix match so no index skips
+            //added to the to_skip array
+            else to_skip[i_to_match] = 0;
+        }
+    }
+    return;
+}
 
 //cycles through the text outputting to the screen all the indices of the
 //text string where the pattern begins if a full match occurs
