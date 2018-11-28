@@ -174,59 +174,61 @@ void TestRunner::RunTestCase(ofstream &resultsFile, string sourceFile, string pa
   // Search using Brute-Force:
   cout << "Running Brute force - ";
   auto start = std::chrono::high_resolution_clock::now();
-  long locBrute = brute(&pattern, &sourceText);
+  long * locBrute = brute(&pattern, &sourceText);
   auto stop = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
   cout << "done.\n";
 
-  long locRK = 0;
+  long *locRK;
   // Search using Rabin-Karp:
-  if(sourceFile[0]=='A'){
-  cout << "Running Rabin-Karp - ";
-  start = std::chrono::high_resolution_clock::now();
-  locRK = rabinKarp(&pattern, &sourceText, 1059749, 62);
-  stop = std::chrono::high_resolution_clock::now();
-  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
-  resultsFile << duration << ", ";
-  cout << "done.\n";
+  if (sourceFile[0] == 'A')
+  {
+    cout << "Running Rabin-Karp - ";
+    start = std::chrono::high_resolution_clock::now();
+    locRK = rabinKarp(&pattern, &sourceText, 1059749, 62);
+    stop = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+    resultsFile << duration << ", ";
+    cout << "done.\n";
   }
-  if(sourceFile[2]=='n' || sourceFile[0]=='S'){
-  cout << "Running Rabin-Karp - ";
-  start = std::chrono::high_resolution_clock::now();
-  locRK = rabinKarp(&pattern, &sourceText, 1059749, 2);
-  stop = std::chrono::high_resolution_clock::now();
-  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
-  resultsFile << duration << ", ";
-  cout << "done.\n";
-  }
-
-  if(sourceFile[0]=='D'){
-  cout << "Running Rabin-Karp - ";
-  start = std::chrono::high_resolution_clock::now();
-  locRK = rabinKarp(&pattern, &sourceText, 1059749, 4);
-  stop = std::chrono::high_resolution_clock::now();
-  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
-  resultsFile << duration << ", ";
-  cout << "done.\n";
+  if (sourceFile[2] == 'n' || sourceFile[0] == 'S')
+  {
+    cout << "Running Rabin-Karp - ";
+    start = std::chrono::high_resolution_clock::now();
+    locRK = rabinKarp(&pattern, &sourceText, 1059749, 2);
+    stop = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+    resultsFile << duration << ", ";
+    cout << "done.\n";
   }
 
-  if(sourceFile == "birds_of_guernsey.txt"){
-  cout << "Running Rabin-Karp - ";
-  start = std::chrono::high_resolution_clock::now();
-  locRK = rabinKarp(&pattern, &sourceText, 1059749, 256);
-  stop = std::chrono::high_resolution_clock::now();
-  duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
-  resultsFile << duration << ", ";
-  cout << "done.\n";
+  if (sourceFile[0] == 'D')
+  {
+    cout << "Running Rabin-Karp - ";
+    start = std::chrono::high_resolution_clock::now();
+    locRK = rabinKarp(&pattern, &sourceText, 1059749, 4);
+    stop = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+    resultsFile << duration << ", ";
+    cout << "done.\n";
   }
-  
-  
+
+  if (sourceFile == "birds_of_guernsey.txt")
+  {
+    cout << "Running Rabin-Karp - ";
+    start = std::chrono::high_resolution_clock::now();
+    locRK = rabinKarp(&pattern, &sourceText, 1059749, 256);
+    stop = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
+    resultsFile << duration << ", ";
+    cout << "done.\n";
+  }
 
   // Search using KMP:
   cout << "Running Knuth-Morris-Pratt - ";
   start = std::chrono::high_resolution_clock::now();
-  long locKMP = kmp(&pattern, &sourceText);
+  long *locKMP = kmp(&pattern, &sourceText);
   stop = std::chrono::high_resolution_clock::now();
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << ", ";
@@ -241,7 +243,8 @@ void TestRunner::RunTestCase(ofstream &resultsFile, string sourceFile, string pa
   duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
   resultsFile << duration << " \n";
   cout << "done.\n";
-  resultsFile << "Found at, " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
-  cout << "Search result: " << locBrute << ", " << locRK << ", " << locKMP << ", " << locBM << endl;
+  resultsFile << "Found at, " << locBrute[0] << ", " << locRK[0] << ", " << locKMP[0] << ", " << locBM << endl;
+  resultsFile << "Number of comparisons, "<< locBrute[1] << ", " << locRK[1] << ", " << locKMP[1] << ", " << locBM << endl;
+  cout << "Search result: " << locBrute[0] << ", " << locRK[0] << ", " << locKMP[0] << ", " << locBM << endl;
 }
 

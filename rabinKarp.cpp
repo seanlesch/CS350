@@ -2,12 +2,14 @@
 
 //worst-case time is O(nm).
 //d is the size of the alphabet to test.
-long rabinKarp(string * pattern, string * source, int q, int d){
+long * rabinKarp(string * pattern, string * source, int q, int d){
     int pLength = pattern->length();
     int sLength = source->length();
     int p = 0; //hash value of pattern string.
     int s = 0; //hash value of source string.
     int h = 1; //d^(s-1)
+    int count = 0;
+    static long r[1];
 
     //Computing hash of h.
     for(int i = 0; i < pLength - 1; i++){
@@ -23,14 +25,18 @@ long rabinKarp(string * pattern, string * source, int q, int d){
 
     //Matching loop.
     for(int i = 0; i <= sLength - pLength; i++){
+        ++count;
         if(p==s){//We have found a match.
             int j=0;
             for(j = 0; j < pLength; j++){ //Check the length of the string for mismatches.
+                ++count;
                 if(source->at(i + j) != pattern->at(j))
                     break;
             }
             if(j == pLength){//Pattern fully matched.
-                return i;
+                r[0] = i;
+                r[1] = count;
+                return r;
             }
         }
         if(i < (sLength - pLength)){//Are we still in bounds? Then get next hash.
@@ -39,6 +45,8 @@ long rabinKarp(string * pattern, string * source, int q, int d){
                 s = s + q;
         }
     }
-    
-    return -1;
+
+    r[0] = -1;
+    r[1] = count;
+    return r;
 }

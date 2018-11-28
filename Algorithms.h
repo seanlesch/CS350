@@ -9,9 +9,9 @@
 
 using namespace std;
 
-long rabinKarp(string *, string *, int, int);
-long kmp(string *, string *);
-long brute(string *, string *);
+long *rabinKarp(string *, string *, int, int);
+long *kmp(string *, string *);
+long *brute(string *, string *);
 void generateStrings();
 string generateRandomBinary(const int len);
 string generateRandomChars(const int len);
